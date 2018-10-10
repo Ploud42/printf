@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/08 18:47:21 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/10 18:37:59 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ typedef struct		s_data
 
 void				ft_printstr(t_data *ap);
 void				ft_printint(t_data *ap);
+void				ft_check_flag(t_data *ap);
 
 #endif

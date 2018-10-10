@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/08 18:54:56 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/10 18:37:39 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	ft_reader_format(t_data *ap)
 		if (*(*ap).format == '%')
 		{
 			ap->format++;
+			ft_check_flag(ap);
 			ft_printer(ap);
 		}
 		else
@@ -54,6 +55,11 @@ static void	ft_set_specifiers(t_data *ap)
 
 static void	ft_set_index(t_data *ap)
 {
+	ap->flag[0] = '-';
+	ap->flag[1] = '+';
+	ap->flag[2] = ' ';
+	ap->flag[3] = '0';
+	ap->flag[4] = '#';
 	ap->spec[0] = 's';
 	ap->spec[1] = 'S';
 	ap->spec[2] = 'p';
