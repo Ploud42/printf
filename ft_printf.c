@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/10 18:37:39 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/11 18:46:42 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_reader_format(t_data *ap)
 		if (*(*ap).format == '%')
 		{
 			ap->format++;
-			ft_check_flag(ap);
+			ft_check(ap);
 			ft_printer(ap);
 		}
 		else
@@ -110,6 +110,7 @@ int	main()
 
 	ret = ft_printf("Hey j'ai envie de te dire %s, et cela %d fois, %s %i fois\n", "salut", 5, "ou alors", 0);
 	printf("ret = %d\n", ret);
-	printf("%.0d\n", 123456);
+	ft_printf("%.3s\n", "abcde");
+	printf("%.3s\n", "abcde");
 	return (0);
 }
