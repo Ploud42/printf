@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/11 18:28:22 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/15 18:47:25 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@ static void		ft_check_precision(t_data *ap)
 	{
 		ap->format++;
 		ap->check[PRECISION] = ft_atoi(ap->format);
-		//ap->check[PRECISION] = (*ap->format) - 48;
 		while (*ap->format >= '0' && *ap->format <= '9')
 			ap->format++;
 	}
-	ft_putnbr(ap->check[PRECISION]);
-	write(1, ap->format, 1);
 }
 
-/*static void		ft_check_width(t_data *ap)
+static void		ft_check_width(t_data *ap)
 {
 	if (*ap->format >= '0' && *ap->format <= '9')
 	{
@@ -48,7 +45,7 @@ static void		ft_check_flag(t_data *ap)
 		}
 		ap->index++;
 	}
-}*/
+}
 
 static void		ft_init(t_data *ap)
 {
@@ -59,12 +56,13 @@ static void		ft_init(t_data *ap)
 	ap->check[HASH] = 0;
 	ap->check[WIDTH] = -1;
 	ap->check[PRECISION] = -1;
+	ap->width = 0;
 }
 
 void			ft_check(t_data *ap)
 {
 	ft_init(ap);
-	//ft_check_flag(ap);
-	//ft_check_width(ap);
+	ft_check_flag(ap);
+	ft_check_width(ap);
 	ft_check_precision(ap);
 }

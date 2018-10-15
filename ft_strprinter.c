@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:06:12 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/11 18:52:33 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/15 18:06:02 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@
 
 void	ft_printstr(t_data *ap)
 {
+	int i;
 
+	i = 0;
 	ap->str = va_arg(ap->arg, char *);
 	ap->i = ft_strlen(ap->str);
-	if (ap->check[PRECISION] >= 0 && ap->i >= ap->check[PRECISION])
-		//ap->str[ap->check[PRECISION]] = 0;
-		printf("OK\n");
-	ap->count += ft_strlen(ap->str);
-	ft_putstr(ap->str);
+	while ((ap->check[PRECISION] < 0 && i < ap->i) || (ap->check[PRECISION] >= 0 && i < ap->check[PRECISION] && i < ap->i))
+	{
+		write(1, &ap->str[i], 1);
+		ap->count++;
+		i++;
+	}
 }
