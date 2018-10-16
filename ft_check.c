@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/15 18:47:25 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/16 15:51:51 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void		ft_check_flag(t_data *ap)
 
 static void		ft_init(t_data *ap)
 {
+	ap->i = 0;
 	ap->check[MINUS] = 0;
 	ap->check[PLUS] = 0;
 	ap->check[SPACE] = 0;
