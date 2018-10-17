@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/16 18:47:58 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/17 17:20:49 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ typedef struct		s_data
 	int				precision;
 }					t_data;
 
+void				ft_printstr_width(t_data *ap);
 void				ft_printstr_preci(t_data *ap);
 void				ft_printstr(t_data *ap);
+
 void				ft_printint(t_data *ap);
+
 void				ft_check(t_data *ap);
 
 #endif
