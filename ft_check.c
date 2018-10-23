@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/16 15:51:51 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/23 17:44:59 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void		ft_init(t_data *ap)
 	ap->check[WIDTH] = -1;
 	ap->check[PRECISION] = -1;
 	ap->width = 0;
+	ap->minus = 0;
 }
 
 void			ft_check(t_data *ap)

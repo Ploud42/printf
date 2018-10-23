@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/17 20:07:23 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/23 19:45:27 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static void	ft_set_specifiers(t_data *ap)
 
 static void	ft_set_index(t_data *ap)
 {
-	ap->flag[0] = '-';
-	ap->flag[1] = '+';
-	ap->flag[2] = ' ';
-	ap->flag[3] = '0';
-	ap->flag[4] = '#';
+	ap->flag[MINUS] = '-';
+	ap->flag[PLUS] = '+';
+	ap->flag[SPACE] = ' ';
+	ap->flag[ZERO] = '0';
+	ap->flag[HASH] = '#';
 	ap->spec[0] = 's';
 	ap->spec[1] = 'S';
 	ap->spec[2] = 'p';
@@ -110,7 +110,7 @@ int	main()
 
 	ret = ft_printf("Hey j'ai envie de te dire %-7s, et cela %05d fois, %s %i fois\n", "salut", 15, "ou alors", 0);
 	printf("ret = %d\n", ret);
-	ft_printf("% 4d\n", 123);
-	printf("%2d\n", 123);
+	ft_printf("%-7.5d\n", 123);
+	printf("%-7.5d\n", 123);
 	return (0);
 }

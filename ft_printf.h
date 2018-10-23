@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/17 17:20:49 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/23 20:04:47 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
-# include "libft.h"
+# include "libft/includes/libft.h"
 
 # define FLAG_NB	6
 # define CHECK_NB	8

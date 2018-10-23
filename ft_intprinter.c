@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/17 20:02:43 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/23 18:05:19 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void static	ft_printint_width(t_data *ap)
 	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
 	{
 		ap->width = '0';
-		if (ap->str[0] == '-')
+		if (ap->minus)
 		{
 			write(1,"-",1);
 			ap->count++;
@@ -26,8 +26,8 @@ void static	ft_printint_width(t_data *ap)
 	}
 	else
 		ap->width = ' ';
-	while (ap->check[WIDTH] > ap->len &&
-	ap->check[WIDTH] > ap->check[PRECISION])
+	while (ap->check[WIDTH] > (ap->len + ap->check[PLUS]) &&
+	ap->check[WIDTH] > (ap->check[PRECISION] + ap->minus + ap->check[PLUS]))
 	{
 		write(1,&ap->width,1);
 		ap->check[WIDTH]--;
@@ -37,15 +37,19 @@ void static	ft_printint_width(t_data *ap)
 
 void static	ft_printint_flag(t_data *ap)
 {
-	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->str[0] == '-'))
+	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->minus))
 	{
 		write(1," ",1);
+	}
+	else if (ap->check[PLUS] && !(ap->minus))
+	{
+		write(1,"+",1);
 	}
 }
 
 void static	ft_printint_preci(t_data *ap)
 {
-	if (ap->str[0] == '-')
+	if (ap->minus)
 	{
 		write(1,"-",1);
 		ap->str++;
@@ -66,6 +70,8 @@ void		ft_printint(t_data *ap)
 	ap->nb = va_arg(ap->arg, int);
 	ap->str = ft_itoa(ap->nb);
 	ap->len = ft_strlen(ap->str);
+	if (ap->str[0] == '-')
+		ap->minus = 1;
 	ap->count += ap->len;
 	if (!ap->check[MINUS])
 		ft_printint_width(ap);
