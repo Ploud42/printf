@@ -6,7 +6,7 @@
 #    By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/23 18:57:15 by jsobel            #+#    #+#              #
-#    Updated: 2018/10/23 19:59:39 by jsobel           ###   ########.fr        #
+#    Updated: 2018/10/23 20:06:42 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ $(OBJ)	:	$(SRC)
 			gcc $(FLAG) -c $(SRC)
 
 clean	:
-			@make -C ./Libft clean
+			@make -C ./libft clean
 			@rm -f $(OBJ)
 
 fclean	:	clean
-			@make -C ./Libft fclean
+			@make -C ./libft fclean
 			@rm -f $(NAME)
 
 re		:	fclean all
