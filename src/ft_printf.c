@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/23 19:45:27 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/25 20:01:42 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	ft_printf(const char *format, ...)
 	ft_putstr(str);
 	va_end(arg);
 	return (0);
-}*/
+}
 
 int	main()
 {
@@ -113,4 +113,4 @@ int	main()
 	ft_printf("%-7.5d\n", 123);
 	printf("%-7.5d\n", 123);
 	return (0);
-}
+}*/

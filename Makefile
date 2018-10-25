@@ -6,34 +6,30 @@
 #    By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/23 18:57:15 by jsobel            #+#    #+#              #
-#    Updated: 2018/10/23 20:06:42 by jsobel           ###   ########.fr        #
+#    Updated: 2018/10/25 19:50:38 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ft_printf
+NAME	=	libftprintf.a
 SRC		=	ft_printf.c \
 			ft_intprinter.c \
 			ft_check.c \
 			ft_strprinter.c
-OBJ		=	$(SRC:.c=.o)
-LIBR	=	-I./libft/includes/
-FlAG	=	-Wall -Wextra -Werror
+OBJ		=	$(addprefix src/, $(SRC:.c=.o))
 
-all		:	$(NAME)
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -Iincludes
 
-$(NAME)	:	$(OBJ)
-			@make -C ./libft
-			gcc $(FLAG) $(OBJ) -I./ $(LIBR) -o $(NAME)
+all: $(NAME)
 
-$(OBJ)	:	$(SRC)
-			gcc $(FLAG) -c $(SRC)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
-clean	:
-			@make -C ./libft clean
-			@rm -f $(OBJ)
+clean:
+	@rm -f $(OBJ)
 
-fclean	:	clean
-			@make -C ./libft fclean
-			@rm -f $(NAME)
+fclean: clean
+	@rm -f $(NAME)
 
-re		:	fclean all
+re: fclean all
