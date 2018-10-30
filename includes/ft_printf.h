@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/26 17:20:25 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/30 20:01:20 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void				ft_printstr_preci(t_data *ap);
 void				ft_printstr(t_data *ap);
 
 void				ft_printint(t_data *ap);
+
+void				ft_printper(t_data *ap);
 
 void				ft_check(t_data *ap);
 

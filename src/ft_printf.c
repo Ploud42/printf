@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/25 20:01:42 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/30 19:51:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,17 @@ static void	ft_reader_format(t_data *ap)
 		if (*(*ap).format == '%')
 		{
 			ap->format++;
-			ft_check(ap);
-			ft_printer(ap);
+			if (*(*ap).format == '%')
+			{
+				write(1, "%", 1);
+				ap->format++;
+				ap->count++;
+			}
+			else
+			{
+				ft_check(ap);
+				ft_printer(ap);
+			}
 		}
 		else
 		{
@@ -51,6 +60,7 @@ static void	ft_set_specifiers(t_data *ap)
 	ap->tab[0] = &ft_printstr;
 	ap->tab[3] = &ft_printint;
 	ap->tab[5] = &ft_printint;
+	ap->tab[14] = &ft_printper;
 }
 
 static void	ft_set_index(t_data *ap)
@@ -74,6 +84,7 @@ static void	ft_set_index(t_data *ap)
 	ap->spec[11] = 'X';
 	ap->spec[12] = 'c';
 	ap->spec[13] = 'C';
+	ap->spec[14] = '%';
 }
 
 int			ft_printf(const char *format, ...)
