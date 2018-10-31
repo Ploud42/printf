@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/30 19:51:44 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/31 18:03:59 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,8 @@ static void	ft_reader_format(t_data *ap)
 		if (*(*ap).format == '%')
 		{
 			ap->format++;
-			if (*(*ap).format == '%')
-			{
-				write(1, "%", 1);
-				ap->format++;
-				ap->count++;
-			}
-			else
-			{
-				ft_check(ap);
-				ft_printer(ap);
-			}
+			ft_check(ap);
+			ft_printer(ap);
 		}
 		else
 		{

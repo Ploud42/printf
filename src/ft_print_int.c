@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intprinter.c                                    :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/23 18:05:19 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/31 19:00:30 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void		ft_printint(t_data *ap)
 {
 	ap->nb = va_arg(ap->arg, int);
 	ap->str = ft_itoa(ap->nb);
+	if (*ap->format == "x" || *ap->format == "X" || *ap->format == "o")
+		ft_convert(ap);
 	ap->len = ft_strlen(ap->str);
 	if (ap->str[0] == '-')
 		ap->minus = 1;

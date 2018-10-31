@@ -6,7 +6,7 @@
 #    By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/23 18:57:15 by jsobel            #+#    #+#              #
-#    Updated: 2018/10/30 20:02:03 by jsobel           ###   ########.fr        #
+#    Updated: 2018/10/31 19:18:26 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ FILES_SRCS =			ft_printf.c			\
 						ft_print_int.c		\
 						ft_check.c			\
 						ft_print_str.c		\
-						ft_print_per.c
+						ft_print_per.c		\
+						ft_convert.c
 FOREIGN_FILES_SRCS =	ft_atoi.c			\
 						ft_itoa.c			\
 						ft_putstr.c			\

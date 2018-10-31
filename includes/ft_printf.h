@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/30 20:01:20 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/31 19:20:29 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct		s_data
 }					t_data;
 
 int					ft_printf(const char *format, ...);
+
+void				ft_convert(t_data *ap);
 
 void				ft_printstr_width(t_data *ap);
 void				ft_printstr_preci(t_data *ap);

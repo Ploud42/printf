@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/30 19:29:34 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/10/31 18:36:39 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ static void		ft_check_flag(t_data *ap)
 		if (*ap->format == ap->flag[ap->index])
 		{
 			ap->check[ap->index] = 1;
-			ap->format++;
+			if (*ap->format == ' ')
+			{
+				while (*ap->format == ' ')
+					ap->format++;
+			}
+			else
+				ap->format++;
 		}
 		ap->index++;
 	}
