@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/31 19:00:30 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/06 19:29:49 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ void static	ft_printint_preci(t_data *ap)
 
 void		ft_printint(t_data *ap)
 {
-	ap->nb = va_arg(ap->arg, int);
-	ap->str = ft_itoa(ap->nb);
-	if (*ap->format == "x" || *ap->format == "X" || *ap->format == "o")
-		ft_convert(ap);
+	if (*ap->format == 'd' || *ap->format == 'D' || *ap->format == 'i')
+	{
+		ap->nb = va_arg(ap->arg, int);
+		ap->str = ft_itoa(ap->nb);
+	}
 	ap->len = ft_strlen(ap->str);
 	if (ap->str[0] == '-')
 		ap->minus = 1;
@@ -81,4 +82,5 @@ void		ft_printint(t_data *ap)
 	ft_printint_preci(ap);
 	if (ap->check[MINUS])
 		ft_printint_width(ap);
+	//free(ap->str);
 }

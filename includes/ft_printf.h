@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/31 19:20:29 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/06 19:40:29 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_data
 	void			(*tab[SPEC_NB])(struct s_data *);
 	va_list			arg;
 	int				nb;
+	long			nbl;
 	int				i;
 	int				count;
 	int				index;
@@ -56,7 +57,8 @@ typedef struct		s_data
 
 int					ft_printf(const char *format, ...);
 
-void				ft_convert(t_data *ap);
+int					ft_nbrlen_base(long long nbr, int base);
+void				ft_convert_o(t_data *ap);
 
 void				ft_printstr_width(t_data *ap);
 void				ft_printstr_preci(t_data *ap);

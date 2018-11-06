@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_o.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
+/*   Updated: 2018/11/06 19:43:53 by jsobel           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int			ft_nbrlen_base(long long nbr, int base)
+{
+	long long	i;
+	int			size;
+
+	i = nbr;
+	size = 0;
+	while (i != 0)
+	{
+		size++;
+		i /= base;
+	}
+	return (size);
+}
+
+void static	ft_loctal(t_data *ap)
+{
+	ap->nbl = va_arg(ap->arg, long);
+	ap->len = ft_nbrlen_base(ap->nbl, 8);
+	if (!(ap->str = ft_memalloc(ap->len + 1)))
+		exit(EXIT_FAILURE);
+	ap->str[ap->len] = 0;
+	while (ap->nbl && ap->len)
+	{
+		ap->str[--ap->len] = ap->nbl % 8 + 48;
+		ap->nbl /= 8;
+	}
+}
+
+void static	ft_octal(t_data *ap)
+{
+	ap->nb = va_arg(ap->arg, int);
+	ap->len = ft_nbrlen_base(ap->nb, 8);
+	if (!(ap->str = ft_memalloc(ap->len + 1)))
+		exit(EXIT_FAILURE);
+	ap->str[ap->len] = 0;
+	while (ap->nb && ap->len)
+	{
+		ap->str[--ap->len] = ap->nb % 8 + 48;
+		ap->nb /= 8;
+	}
+}
+
+void	ft_convert_o(t_data *ap)
+{
+	if (*ap->format == 'o')
+		ft_octal(ap);
+	else
+		ft_loctal(ap);
+	ft_printint(ap);
+}
