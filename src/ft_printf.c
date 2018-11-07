@@ -6,12 +6,11 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/06 19:39:00 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/07 19:15:02 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static void	ft_printer(t_data *ap)
 {
@@ -51,10 +50,10 @@ static void	ft_set_specifiers(t_data *ap)
 	ap->tab[0] = &ft_printstr;
 	ap->tab[3] = &ft_printint;
 	ap->tab[5] = &ft_printint;
-	ap->tab[6] = &ft_convert;
-	ap->tab[7] = &ft_convert;
-	ap->tab[10] = &ft_convert;
-	ap->tab[11] = &ft_convert;
+	ap->tab[6] = &ft_convert_o;
+	ap->tab[7] = &ft_convert_o;
+	ap->tab[10] = &ft_convert_x;
+	ap->tab[11] = &ft_convert_x;
 	ap->tab[14] = &ft_printper;
 }
 
@@ -65,6 +64,10 @@ static void	ft_set_index(t_data *ap)
 	ap->flag[SPACE] = ' ';
 	ap->flag[ZERO] = '0';
 	ap->flag[HASH] = '#';
+	ap->flag[LONG] = 'l';
+	ap->flag[H] = 'h';
+	ap->flag[INTMAX] = 'j';
+	ap->flag[SIZE_T] = 'z';
 	ap->spec[0] = 's';
 	ap->spec[1] = 'S';
 	ap->spec[2] = 'p';
