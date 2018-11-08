@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/07 19:25:48 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/08 19:21:16 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # define FLAG_NB	9
 # define CHECK_NB	11
 # define SPEC_NB	15
-# define MINUS		0
-# define PLUS		1
-# define SPACE		2
-# define ZERO		3
-# define HASH		4
+# define HASH		0
+# define MINUS		1
+# define PLUS		2
+# define SPACE		3
+# define ZERO		4
 # define LONG		5
 # define H			6
 # define INTMAX		7
@@ -46,7 +46,7 @@ typedef struct		s_data
 	va_list			arg;
 	int				nb;
 	long			nbl;
-	long long		nbll;
+	intmax_t		nbll;
 	int				i;
 	int				count;
 	int				index;
@@ -64,7 +64,7 @@ int					ft_printf(const char *format, ...);
 
 void				ft_convert_x(t_data *ap);
 
-int					ft_nbrlen_base(long long nbr, int base);
+int					ft_nbrlen_base(intmax_t nbr, int base);
 void				ft_convert_o(t_data *ap);
 
 void				ft_printstr_width(t_data *ap);

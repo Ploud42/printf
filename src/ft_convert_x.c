@@ -6,23 +6,14 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/07 19:35:53 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/08 18:18:31 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void static	ft_lhexa(t_data *ap)
+void static	ft_upper_hexa(t_data *ap)
 {
-	if (ap->check[LONG] == 0)
-		ap->nbll = va_arg(ap->arg, int);
-	else if (ap->check[LONG] == 1)
-		ap->nbll = va_arg(ap->arg, long);
-	else if (ap->check[LONG] == 2)
-		ap->nbll = va_arg(ap->arg, long long);
-	ap->len = ft_nbrlen_base(ap->nbll, 16);
-	if (!(ap->str = ft_memalloc(ap->len + 1)))
-		exit(EXIT_FAILURE);
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
@@ -36,15 +27,6 @@ void static	ft_lhexa(t_data *ap)
 
 void static	ft_hexa(t_data *ap)
 {
-	if (ap->check[LONG] == 0)
-		ap->nbll = va_arg(ap->arg, int);
-	else if (ap->check[LONG] == 1)
-		ap->nbll = va_arg(ap->arg, long);
-	else if (ap->check[LONG] == 2)
-		ap->nbll = va_arg(ap->arg, long long);
-	ap->len = ft_nbrlen_base(ap->nbll, 16);
-	if (!(ap->str = ft_memalloc(ap->len + 1)))
-		exit(EXIT_FAILURE);
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
@@ -58,9 +40,20 @@ void static	ft_hexa(t_data *ap)
 
 void		ft_convert_x(t_data *ap)
 {
+	if (ap->check[LONG] == 0 && ap->check[INTMAX] == 0)
+		ap->nbll = va_arg(ap->arg, int);
+	else if (ap->check[LONG] == 1)
+		ap->nbll = va_arg(ap->arg, long);
+	else if (ap->check[LONG] == 2)
+		ap->nbll = va_arg(ap->arg, long long);
+	else if (ap->check[INTMAX] == 1)
+		ap->nbll = va_arg(ap->arg, intmax_t);
+	ap->len = ft_nbrlen_base(ap->nbll, 16);
+	if (!(ap->str = ft_memalloc(ap->len + 1)))
+		exit(EXIT_FAILURE);
 	if (*ap->format == 'x')
 		ft_hexa(ap);
 	else
-		ft_lhexa(ap);
+		ft_upper_hexa(ap);
 	ft_printint(ap);
 }

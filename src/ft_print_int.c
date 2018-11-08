@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/06 19:29:49 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/08 19:18:02 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void static	ft_printint_width(t_data *ap)
 			ap->count++;
 			ap->str++;
 		}
+		else if (ap->check[HASH] && ap->str[0] != '0')
+		{
+			write(1,"0",1);
+			if (*ap->format == 'x')
+				write(1,"x",1);
+			else if (*ap->format == 'X')
+				write(1,"X",1);
+		}
 	}
 	else
 		ap->width = ' ';
@@ -37,13 +45,18 @@ void static	ft_printint_width(t_data *ap)
 
 void static	ft_printint_flag(t_data *ap)
 {
-	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->minus))
-	{
+	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->minus) &&
+	ap->count++)
 		write(1," ",1);
-	}
-	else if (ap->check[PLUS] && !(ap->minus))
-	{
+	else if (ap->check[PLUS] && !(ap->minus) && ap->count++)
 		write(1,"+",1);
+	else if (ap->check[HASH] && ap->str[0] != '0' && !ap->check[ZERO])
+	{
+		write(1,"0",1);
+		if (*ap->format == 'x')
+			write(1,"x",1);
+		else if (*ap->format == 'X')
+			write(1,"X",1);
 	}
 }
 
@@ -76,11 +89,16 @@ void		ft_printint(t_data *ap)
 	if (ap->str[0] == '-')
 		ap->minus = 1;
 	ap->count += ap->len;
+	if (ap->check[HASH] && ap->str[0] != '0' && ap->count++ &&
+	ap->check[WIDTH]--)
+	{
+		if ((*ap->format == 'x' || *ap->format == 'X') && ap->count++)
+			ap->check[WIDTH]--;
+	}
 	if (!ap->check[MINUS])
 		ft_printint_width(ap);
 	ft_printint_flag(ap);
 	ft_printint_preci(ap);
 	if (ap->check[MINUS])
 		ft_printint_width(ap);
-	//free(ap->str);
 }

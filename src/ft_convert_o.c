@@ -6,13 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/07 18:18:30 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/08 18:08:25 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_nbrlen_base(long long nbr, int base)
+int			ft_nbrlen_base(intmax_t nbr, int base)
 {
 	long long	i;
 	int			size;
