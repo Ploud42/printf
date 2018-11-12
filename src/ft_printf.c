@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/07 19:15:02 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/12 18:34:22 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	ft_set_specifiers(t_data *ap)
 	ap->tab[7] = &ft_convert_o;
 	ap->tab[10] = &ft_convert_x;
 	ap->tab[11] = &ft_convert_x;
+	ap->tab[12] = &ft_printchar;
 	ap->tab[14] = &ft_printper;
 }
 

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/08 19:18:02 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/12 19:40:34 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void static	ft_printint_width(t_data *ap)
 {
 	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
 	{
-		ap->width = '0';
+		if (!ap->check[MINUS])
+			ap->width = '0';
 		if (ap->minus)
 		{
 			write(1,"-",1);
@@ -32,8 +33,6 @@ void static	ft_printint_width(t_data *ap)
 				write(1,"X",1);
 		}
 	}
-	else
-		ap->width = ' ';
 	while (ap->check[WIDTH] > (ap->len + ap->check[PLUS]) &&
 	ap->check[WIDTH] > (ap->check[PRECISION] + ap->minus + ap->check[PLUS]))
 	{
@@ -88,7 +87,7 @@ void		ft_printint(t_data *ap)
 	ap->len = ft_strlen(ap->str);
 	if (ap->str[0] == '-')
 		ap->minus = 1;
-	ap->count += ap->len;
+	ap->count += (ap->len - ap->minus);
 	if (ap->check[HASH] && ap->str[0] != '0' && ap->count++ &&
 	ap->check[WIDTH]--)
 	{

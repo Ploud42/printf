@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/08 19:21:44 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/12 20:06:25 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,18 @@ static void		ft_check_flag(t_data *ap)
 		while (*ap->format == ap->flag[ap->index])
 		{
 			ap->check[ap->index]++;
-			if (*ap->format == ' ')
-			{
-				while (*ap->format == ' ')
-					ap->format++;
-			}
-			else
-				ap->format++;
+			ap->format++;
 		}
 		ap->index++;
 	}
+	if (ap->check[MINUS] && ap->check[ZERO])
+		ap->check[ZERO] = 0;
 }
 
 static void		ft_init(t_data *ap)
 {
 	ap->i = 0;
+	ap->len = 0;
 	ap->check[HASH] = 0;
 	ap->check[MINUS] = 0;
 	ap->check[PLUS] = 0;
@@ -67,7 +64,7 @@ static void		ft_init(t_data *ap)
 	ap->check[SIZE_T] = 0;
 	ap->check[WIDTH] = -1;
 	ap->check[PRECISION] = -1;
-	ap->width = 0;
+	ap->width = ' ';
 	ap->minus = 0;
 }
 

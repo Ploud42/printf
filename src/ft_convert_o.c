@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/08 18:08:25 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/12 19:19:48 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ void	ft_convert_o(t_data *ap)
 		ft_octa(ap);
 	else
 		ft_locta(ap);
+	if (!ap->check[HASH])
+		ft_preci_base(ap);
 	ft_printint(ap);
 }

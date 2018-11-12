@@ -6,11 +6,20 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/08 18:18:31 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/12 19:19:30 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		ft_preci_base(t_data *ap)
+{
+	if (ap->check[PRECISION] == 0)
+	{
+		ap->str[0] = 0;
+		ap->check[HASH] = 0;
+	}
+}
 
 void static	ft_upper_hexa(t_data *ap)
 {
@@ -55,5 +64,6 @@ void		ft_convert_x(t_data *ap)
 		ft_hexa(ap);
 	else
 		ft_upper_hexa(ap);
+	ft_preci_base(ap);
 	ft_printint(ap);
 }
