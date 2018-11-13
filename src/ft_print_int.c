@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 19:40:34 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/13 17:56:56 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void static	ft_printint_preci(t_data *ap)
 		ap->count++;
 		ap->len--;
 	}
-	while (ap->check[PRECISION] > ap->len)
+	while (ap->precision > ap->len)
 	{
 		write(1,"0",1);
-		ap->check[PRECISION]--;
+		ap->precision--;
 		ap->count++;
 	}
 	ft_putstr(ap->str);

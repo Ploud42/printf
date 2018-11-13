@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 19:19:48 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/13 18:15:48 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			ft_nbrlen_base(intmax_t nbr, int base)
 {
-	long long	i;
+	intmax_t	i;
 	int			size;
 
 	i = nbr;
@@ -26,6 +26,8 @@ int			ft_nbrlen_base(intmax_t nbr, int base)
 		size++;
 		i /= base;
 	}
+	if (nbr < 0)
+		size++;
 	return (size);
 }
 

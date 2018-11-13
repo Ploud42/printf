@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 20:06:25 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/13 17:56:13 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void		ft_check_precision(t_data *ap)
 		while (*ap->format >= '0' && *ap->format <= '9')
 			ap->format++;
 	}
+	ap->precision = ap->check[PRECISION];
 }
 
 static void		ft_check_width(t_data *ap)
@@ -66,6 +67,7 @@ static void		ft_init(t_data *ap)
 	ap->check[PRECISION] = -1;
 	ap->width = ' ';
 	ap->minus = 0;
+	ap->precision = 0;
 }
 
 void			ft_check(t_data *ap)
