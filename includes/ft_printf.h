@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 19:10:09 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 19:13:30 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SPACE		3
 # define ZERO		4
 # define LONG		5
-# define H			6
+# define SHORT		6
 # define INTMAX		7
 # define SIZE_T		8
 # define WIDTH		9
@@ -59,11 +59,14 @@ typedef struct		s_data
 
 int					ft_printf(const char *format, ...);
 
+char				*ft_itoa_intmax(intmax_t n);
+
 void				ft_printchar(t_data *ap);
 
 void				ft_preci_base(t_data *ap);
 void				ft_convert_x(t_data *ap);
 
+void				ft_get_nb(t_data *ap);
 int					ft_nbrlen_base(intmax_t nbr, int base);
 void				ft_convert_o(t_data *ap);
 

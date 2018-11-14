@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/13 17:56:13 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 18:15:35 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,26 @@ static void		ft_check_width(t_data *ap)
 
 static void		ft_check_flag(t_data *ap)
 {
-	ap->index = 0;
-	while (ap->index < FLAG_NB)
+	ap->i = 1;
+	while (ap->i)
 	{
-		while (*ap->format == ap->flag[ap->index])
+		ap->i = 0;
+		ap->index = 0;
+		while (ap->index < FLAG_NB)
 		{
-			ap->check[ap->index]++;
-			ap->format++;
+			while (*ap->format == ap->flag[ap->index])
+			{
+				ap->check[ap->index]++;
+				ap->format++;
+				ap->i++;
+			}
+			ap->index++;
 		}
-		ap->index++;
 	}
 	if (ap->check[MINUS] && ap->check[ZERO])
 		ap->check[ZERO] = 0;
+	if (ap->check[SPACE] && ap->check[PLUS])
+		ap->check[SPACE] = 0;
 }
 
 static void		ft_init(t_data *ap)
@@ -60,7 +68,7 @@ static void		ft_init(t_data *ap)
 	ap->check[SPACE] = 0;
 	ap->check[ZERO] = 0;
 	ap->check[LONG] = 0;
-	ap->check[H] = 0;
+	ap->check[SHORT] = 0;
 	ap->check[INTMAX] = 0;
 	ap->check[SIZE_T] = 0;
 	ap->check[WIDTH] = -1;

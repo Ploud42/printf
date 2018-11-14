@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 19:19:30 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 19:03:53 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,9 @@ void static	ft_hexa(t_data *ap)
 
 void		ft_convert_x(t_data *ap)
 {
-	if (ap->check[LONG] == 0 && ap->check[INTMAX] == 0)
-		ap->nbll = va_arg(ap->arg, int);
-	else if (ap->check[LONG] == 1)
-		ap->nbll = va_arg(ap->arg, long);
-	else if (ap->check[LONG] == 2)
-		ap->nbll = va_arg(ap->arg, long long);
-	else if (ap->check[INTMAX] == 1)
-		ap->nbll = va_arg(ap->arg, intmax_t);
+	ft_get_nb(ap);
+	if (ap->nbll < 0)
+		ap->nbll = 4294967296 + ap->nbll;
 	ap->len = ft_nbrlen_base(ap->nbll, 16);
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);

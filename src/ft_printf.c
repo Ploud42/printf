@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 18:34:22 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 18:42:02 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_set_index(t_data *ap)
 	ap->flag[ZERO] = '0';
 	ap->flag[HASH] = '#';
 	ap->flag[LONG] = 'l';
-	ap->flag[H] = 'h';
+	ap->flag[SHORT] = 'h';
 	ap->flag[INTMAX] = 'j';
 	ap->flag[SIZE_T] = 'z';
 	ap->spec[0] = 's';

@@ -6,33 +6,41 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/13 17:56:56 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 19:03:30 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void static ft_case_zero(t_data *ap)
+{
+	if (!ap->check[MINUS])
+		ap->width = '0';
+	if (ap->minus)
+	{
+		write(1,"-",1);
+		ap->str++;
+	}
+	else if (ap->check[PLUS] && ap->count++)
+		write(1,"+",1);
+	else if (ap->check[HASH] && ap->str[0] != '0')
+	{
+		write(1,"0",1);
+		if (*ap->format == 'x')
+			write(1,"x",1);
+		else if (*ap->format == 'X')
+			write(1,"X",1);
+	}
+}
+
 void static	ft_printint_width(t_data *ap)
 {
 	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
 	{
-		if (!ap->check[MINUS])
-			ap->width = '0';
-		if (ap->minus)
-		{
-			write(1,"-",1);
-			ap->count++;
-			ap->str++;
-		}
-		else if (ap->check[HASH] && ap->str[0] != '0')
-		{
-			write(1,"0",1);
-			if (*ap->format == 'x')
-				write(1,"x",1);
-			else if (*ap->format == 'X')
-				write(1,"X",1);
-		}
+		ft_case_zero(ap);
 	}
+	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
+		write(1,"+",1);
 	while (ap->check[WIDTH] > (ap->len + ap->check[PLUS]) &&
 	ap->check[WIDTH] > (ap->check[PRECISION] + ap->minus + ap->check[PLUS]))
 	{
@@ -47,7 +55,7 @@ void static	ft_printint_flag(t_data *ap)
 	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->minus) &&
 	ap->count++)
 		write(1," ",1);
-	else if (ap->check[PLUS] && !(ap->minus) && ap->count++)
+	else if (ap->check[PLUS] && !(ap->minus) && !ap->check[ZERO] && ap->count++)
 		write(1,"+",1);
 	else if (ap->check[HASH] && ap->str[0] != '0' && !ap->check[ZERO])
 	{
@@ -61,12 +69,10 @@ void static	ft_printint_flag(t_data *ap)
 
 void static	ft_printint_preci(t_data *ap)
 {
-	if (ap->minus)
+	if (ap->str[0] == '-')
 	{
 		write(1,"-",1);
 		ap->str++;
-		ap->count++;
-		ap->len--;
 	}
 	while (ap->precision > ap->len)
 	{
@@ -75,20 +81,19 @@ void static	ft_printint_preci(t_data *ap)
 		ap->count++;
 	}
 	ft_putstr(ap->str);
+	if (ap->check[MINUS])
+		ft_printint_width(ap);
 }
 
 void		ft_printint(t_data *ap)
 {
 	if (*ap->format == 'd' || *ap->format == 'D' || *ap->format == 'i')
-	{
-		ap->nb = va_arg(ap->arg, int);
-		ap->str = ft_itoa(ap->nb);
-	}
+		ft_get_nb(ap);
 	ap->len = ft_strlen(ap->str);
-	if (ap->str[0] == '-')
-		ap->minus = 1;
-	ap->count += (ap->len - ap->minus);
-	if (ap->check[HASH] && ap->str[0] != '0' && ap->count++ &&
+	if (ap->str[0] == '-' && ++ap->minus)
+		ap->check[PLUS] = 0;
+	ap->count += (ap->len);
+	if (ap->check[HASH] && ap->str[0] != '0' && ++ap->count &&
 	ap->check[WIDTH]--)
 	{
 		if ((*ap->format == 'x' || *ap->format == 'X') && ap->count++)
@@ -98,6 +103,4 @@ void		ft_printint(t_data *ap)
 		ft_printint_width(ap);
 	ft_printint_flag(ap);
 	ft_printint_preci(ap);
-	if (ap->check[MINUS])
-		ft_printint_width(ap);
 }

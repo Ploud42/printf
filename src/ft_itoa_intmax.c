@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_intmax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:28:14 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/07 17:48:43 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 19:13:11 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_itoa(int n)
+char	*ft_itoa_intmax(intmax_t n)
 {
-	char	*tab;
-	long	i;
-	int		size;
+	char		*tab;
+	intmax_t	i;
+	int			size;
 
 	i = n;
 	size = n == 0 ? 1 : 0;

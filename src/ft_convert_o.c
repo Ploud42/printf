@@ -6,11 +6,28 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/13 18:15:48 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/14 19:13:45 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		ft_get_nb(t_data *ap)
+{
+	if (ap->check[LONG] == 1)
+		ap->nbll = va_arg(ap->arg, long);
+	else if (ap->check[LONG] == 2)
+		ap->nbll = va_arg(ap->arg, long long);
+	else if (ap->check[INTMAX] == 1)
+		ap->nbll = va_arg(ap->arg, intmax_t);
+	else if (ap->check[SHORT] == 1)
+		ap->nbll = (short)va_arg(ap->arg, int);
+	else if (ap->check[SHORT] == 2)
+		ap->nbll = (char)va_arg(ap->arg, int);
+	else
+		ap->nbll = va_arg(ap->arg, int);
+	ap->str = ft_itoa_intmax(ap->nbll);
+}
 
 int			ft_nbrlen_base(intmax_t nbr, int base)
 {
@@ -26,8 +43,6 @@ int			ft_nbrlen_base(intmax_t nbr, int base)
 		size++;
 		i /= base;
 	}
-	if (nbr < 0)
-		size++;
 	return (size);
 }
 
