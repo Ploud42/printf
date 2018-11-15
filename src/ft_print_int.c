@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/14 19:03:30 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/15 18:49:42 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,16 @@ void static	ft_printint_preci(t_data *ap)
 void		ft_printint(t_data *ap)
 {
 	if (*ap->format == 'd' || *ap->format == 'D' || *ap->format == 'i')
+	{
 		ft_get_nb(ap);
+		if (ap->nbll == (-9223372036854775807 - 1))
+		{
+			ap->str = ft_itoa_intmax(ap->nbll + 1);
+			ap->str[19]++;
+		}
+		else
+			ap->str = ft_itoa_intmax(ap->nbll);
+	}
 	ap->len = ft_strlen(ap->str);
 	if (ap->str[0] == '-' && ++ap->minus)
 		ap->check[PLUS] = 0;

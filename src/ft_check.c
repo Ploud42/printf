@@ -6,11 +6,12 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/14 18:15:35 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/15 18:14:22 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include<stdio.h>
 
 static void		ft_check_precision(t_data *ap)
 {

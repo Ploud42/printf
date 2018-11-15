@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/14 19:13:45 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/15 18:30:16 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void		ft_get_nb(t_data *ap)
 		ap->nbll = (char)va_arg(ap->arg, int);
 	else
 		ap->nbll = va_arg(ap->arg, int);
-	ap->str = ft_itoa_intmax(ap->nbll);
 }
 
 int			ft_nbrlen_base(intmax_t nbr, int base)
