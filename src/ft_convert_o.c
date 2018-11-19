@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/15 18:30:16 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/19 17:42:51 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void		ft_get_nb(t_data *ap)
 		ap->nbll = (short)va_arg(ap->arg, int);
 	else if (ap->check[SHORT] == 2)
 		ap->nbll = (char)va_arg(ap->arg, int);
+	else if (ap->check[SIZE_T])
+		ap->nbll = va_arg(ap->arg, size_t);
 	else
 		ap->nbll = va_arg(ap->arg, int);
 }
@@ -80,6 +82,6 @@ void	ft_convert_o(t_data *ap)
 	else
 		ft_locta(ap);
 	if (!ap->check[HASH])
-		ft_preci_base(ap);
+		ft_preci_zero(ap);
 	ft_printint(ap);
 }

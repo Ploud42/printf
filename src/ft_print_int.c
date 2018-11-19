@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/15 18:49:42 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/19 17:58:49 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void static	ft_printint_preci(t_data *ap)
 		write(1,"-",1);
 		ap->str++;
 	}
-	while (ap->precision > ap->len)
+	while (ap->precision > (ap->len - ap->minus))
 	{
 		write(1,"0",1);
 		ap->precision--;
@@ -97,17 +97,17 @@ void		ft_printint(t_data *ap)
 		}
 		else
 			ap->str = ft_itoa_intmax(ap->nbll);
+		if (ap->nbll == 0)
+			ft_preci_zero(ap);
 	}
 	ap->len = ft_strlen(ap->str);
 	if (ap->str[0] == '-' && ++ap->minus)
 		ap->check[PLUS] = 0;
 	ap->count += (ap->len);
 	if (ap->check[HASH] && ap->str[0] != '0' && ++ap->count &&
-	ap->check[WIDTH]--)
-	{
-		if ((*ap->format == 'x' || *ap->format == 'X') && ap->count++)
+	ap->check[WIDTH]-- && (*ap->format == 'x' || *ap->format == 'X') &&
+	ap->count++)
 			ap->check[WIDTH]--;
-	}
 	if (!ap->check[MINUS])
 		ft_printint_width(ap);
 	ft_printint_flag(ap);

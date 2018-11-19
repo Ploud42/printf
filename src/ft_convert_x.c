@@ -6,13 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/14 19:03:53 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/19 17:35:52 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_preci_base(t_data *ap)
+void		ft_preci_zero(t_data *ap)
 {
 	if (ap->check[PRECISION] == 0)
 	{
@@ -59,6 +59,6 @@ void		ft_convert_x(t_data *ap)
 		ft_hexa(ap);
 	else
 		ft_upper_hexa(ap);
-	ft_preci_base(ap);
+	ft_preci_zero(ap);
 	ft_printint(ap);
 }

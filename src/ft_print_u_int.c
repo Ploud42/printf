@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_u_int.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/19 18:10:39 by jsobel            #+#    #+#             */
+/*   Updated: 2018/11/19 19:10:33 by jsobel           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+void static ft_case_zero(t_data *ap)
+{
+	if (!ap->check[MINUS])
+		ap->width = '0';
+	else if (ap->check[PLUS] && ap->count++)
+		write(1,"+",1);
+}
+
+void static	ft_printint_width(t_data *ap)
+{
+	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
+	{
+		ft_case_zero(ap);
+	}
+	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
+		write(1,"+",1);
+	while (ap->check[WIDTH] > (ap->len + ap->check[PLUS]) &&
+	ap->check[WIDTH] > (ap->check[PRECISION] + ap->check[PLUS]))
+	{
+		write(1,&ap->width,1);
+		ap->check[WIDTH]--;
+		ap->count++;
+	}
+}
+
+void static	ft_printint_preci(t_data *ap)
+{
+	while (ap->precision > (ap->len - ap->minus))
+	{
+		write(1,"0",1);
+		ap->precision--;
+		ap->count++;
+	}
+	ft_putstr(ap->str);
+	if (ap->check[MINUS])
+		ft_printint_width(ap);
+}
+
+void		ft_print_u_int(t_data *ap)
+{
+	if (ap->check[LONG] == 1)
+		ap->nbll = va_arg(ap->arg, unsigned long);
+	else if (ap->check[LONG] == 2)
+		ap->nbll = va_arg(ap->arg, unsigned long long);
+	else if (ap->check[INTMAX] == 1)
+		ap->nbll = va_arg(ap->arg, intmax_t);
+	else if (ap->check[SIZE_T])
+		ap->nbll = va_arg(ap->arg, size_t);
+	else
+		ap->nbll = va_arg(ap->arg, unsigned int);
+	ap->str = ft_itoa_intmax(ap->nbll);
+	if (ap->nbll == 0)
+		ft_preci_zero(ap);
+	ap->len = ft_strlen(ap->str);
+	ap->count += (ap->len);
+	if (!ap->check[MINUS])
+		ft_printint_width(ap);
+	ft_printint_preci(ap);
+}

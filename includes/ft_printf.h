@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/15 18:40:54 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/19 18:45:16 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,18 @@ typedef struct		s_data
 	char			width;
 	int				len;
 	int				precision;
+	unsigned long long unbll;
 }					t_data;
 
 int					ft_printf(const char *format, ...);
 
 char				*ft_itoa_intmax(long long n);
 
+void				ft_print_u_int(t_data *ap);
+
 void				ft_printchar(t_data *ap);
 
-void				ft_preci_base(t_data *ap);
+void				ft_preci_zero(t_data *ap);
 void				ft_convert_x(t_data *ap);
 
 void				ft_get_nb(t_data *ap);
