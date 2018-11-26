@@ -6,11 +6,12 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/19 17:35:52 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/26 19:40:54 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include<stdio.h>
 
 void		ft_preci_zero(t_data *ap)
 {
@@ -49,13 +50,18 @@ void static	ft_hexa(t_data *ap)
 
 void		ft_convert_x(t_data *ap)
 {
-	ft_get_nb(ap);
+	if (*ap->format == 'p' && ++ap->check[HASH])
+		ap->nbll = va_arg(ap->arg, unsigned long);
+	else
+		ft_get_nb(ap);
 	if (ap->nbll < 0)
 		ap->nbll = 4294967296 + ap->nbll;
+		//(unsigned)ap->nbll;
+	//printf("%jd\n", ap->nbll);
 	ap->len = ft_nbrlen_base(ap->nbll, 16);
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
-	if (*ap->format == 'x')
+	if (*ap->format == 'x' || *ap->format == 'p')
 		ft_hexa(ap);
 	else
 		ft_upper_hexa(ap);

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/19 17:42:51 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/26 20:03:02 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		ft_get_nb(t_data *ap)
 		ap->nbll = va_arg(ap->arg, long);
 	else if (ap->check[LONG] == 2)
 		ap->nbll = va_arg(ap->arg, long long);
+	/*else if (ap->check[INTMAX] && *ap->format == 'x')
+		ap->unbll = va_arg(ap->arg, uintmax_t);*/
 	else if (ap->check[INTMAX] == 1)
 		ap->nbll = va_arg(ap->arg, intmax_t);
 	else if (ap->check[SHORT] == 1)
@@ -30,9 +32,9 @@ void		ft_get_nb(t_data *ap)
 		ap->nbll = va_arg(ap->arg, int);
 }
 
-int			ft_nbrlen_base(intmax_t nbr, int base)
+int			ft_nbrlen_base(uintmax_t nbr, int base)
 {
-	intmax_t	i;
+	uintmax_t	i;
 	int			size;
 
 	i = nbr;
@@ -49,29 +51,29 @@ int			ft_nbrlen_base(intmax_t nbr, int base)
 
 void static	ft_locta(t_data *ap)
 {
-	ap->nbl = va_arg(ap->arg, long);
-	ap->len = ft_nbrlen_base(ap->nbl, 8);
+	ap->nbll = va_arg(ap->arg, long);
+	ap->len = ft_nbrlen_base(ap->nbll, 8);
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
-		ap->str[--ap->len] = ap->nbl % 8 + 48;
-		ap->nbl /= 8;
+		ap->str[--ap->len] = ap->nbll % 8 + 48;
+		ap->nbll /= 8;
 	}
 }
 
 void static	ft_octa(t_data *ap)
 {
-	ap->nb = va_arg(ap->arg, int);
-	ap->len = ft_nbrlen_base(ap->nb, 8);
+	ap->nbll = va_arg(ap->arg, int);
+	ap->len = ft_nbrlen_base(ap->nbll, 8);
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
-		ap->str[--ap->len] = ap->nb % 8 + 48;
-		ap->nb /= 8;
+		ap->str[--ap->len] = ap->nbll % 8 + 48;
+		ap->nbll /= 8;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/19 18:45:16 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/26 19:55:30 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct		s_data
 	void			(*tab[SPEC_NB])(struct s_data *);
 	va_list			arg;
 	int				nb;
-	long			nbl;
-	long long		nbll;
+	uintmax_t		unbll;
+	intmax_t		nbll;
 	char			c;
 	int				i;
 	int				count;
@@ -55,12 +55,11 @@ typedef struct		s_data
 	char			width;
 	int				len;
 	int				precision;
-	unsigned long long unbll;
 }					t_data;
 
 int					ft_printf(const char *format, ...);
 
-char				*ft_itoa_intmax(long long n);
+char				*ft_itoa_intmax(intmax_t n);
 
 void				ft_print_u_int(t_data *ap);
 
@@ -70,7 +69,7 @@ void				ft_preci_zero(t_data *ap);
 void				ft_convert_x(t_data *ap);
 
 void				ft_get_nb(t_data *ap);
-int					ft_nbrlen_base(intmax_t nbr, int base);
+int					ft_nbrlen_base(uintmax_t nbr, int base);
 void				ft_convert_o(t_data *ap);
 
 void				ft_printstr_width(t_data *ap);

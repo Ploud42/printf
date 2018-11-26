@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/23 17:52:49 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/26 17:33:59 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	ft_reader_format(t_data *ap)
 static void	ft_set_specifiers(t_data *ap)
 {
 	ap->tab[0] = &ft_printstr;
+	ap->tab[2] = &ft_convert_x;
 	ap->tab[3] = &ft_printint;
 	ap->tab[5] = &ft_printint;
 	ap->tab[6] = &ft_convert_o;

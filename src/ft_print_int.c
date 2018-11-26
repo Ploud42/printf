@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/19 17:58:49 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/26 19:39:48 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void static ft_case_zero(t_data *ap)
 	else if (ap->check[HASH] && ap->str[0] != '0')
 	{
 		write(1,"0",1);
-		if (*ap->format == 'x')
+		if (*ap->format == 'x' || *ap->format == 'p')
 			write(1,"x",1);
 		else if (*ap->format == 'X')
 			write(1,"X",1);
@@ -60,7 +60,7 @@ void static	ft_printint_flag(t_data *ap)
 	else if (ap->check[HASH] && ap->str[0] != '0' && !ap->check[ZERO])
 	{
 		write(1,"0",1);
-		if (*ap->format == 'x')
+		if (*ap->format == 'x' || *ap->format == 'p')
 			write(1,"x",1);
 		else if (*ap->format == 'X')
 			write(1,"X",1);
@@ -105,8 +105,8 @@ void		ft_printint(t_data *ap)
 		ap->check[PLUS] = 0;
 	ap->count += (ap->len);
 	if (ap->check[HASH] && ap->str[0] != '0' && ++ap->count &&
-	ap->check[WIDTH]-- && (*ap->format == 'x' || *ap->format == 'X') &&
-	ap->count++)
+	ap->check[WIDTH]-- && (*ap->format == 'x' || *ap->format == 'X' ||
+	*ap->format == 'p') &&	ap->count++)
 			ap->check[WIDTH]--;
 	if (!ap->check[MINUS])
 		ft_printint_width(ap);

@@ -6,17 +6,17 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:28:14 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/15 18:49:34 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/26 19:27:56 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_itoa_intmax(long long n)
+char	*ft_itoa_intmax(intmax_t n)
 {
 	char		*tab;
-	long long	i;
-	long long	size;
+	intmax_t	i;
+	intmax_t	size;
 
 	i = n;
 	size = n == 0 ? 1 : 0;
