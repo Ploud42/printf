@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 19:51:59 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/26 19:39:23 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/27 18:46:47 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main()
 	printf("ret = %d\n", ret);
 	ret = printf("Hey j'ai envie de te dire %-7s, et cela %+5d fois, %s %i fois\n", "salut", 15, "ou alors", 0);
 	printf("ret = %d\n", ret);*/
-	ft_printf("%lld\n", -9223372036854775808);
-	a = ft_printf("%jx\n", -4294967296);
-	b = printf("%jx\n", -4294967296);
+	//ft_printf("%lld\n", -9223372036854775808);
+	a = ft_printf("%x\n", -42);
+	b = printf("%x\n", -42);
 	printf("ft_printf = %d et printf = %d\n", a, b);
 	return (0);
 }

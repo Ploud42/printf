@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/26 19:55:30 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/27 18:24:26 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ typedef struct		s_data
 
 int					ft_printf(const char *format, ...);
 
+char				*ft_itoa_uintmax(uintmax_t n);
 char				*ft_itoa_intmax(intmax_t n);
 
+void				ft_get_nb_u(t_data *ap);
 void				ft_print_u_int(t_data *ap);
 
 void				ft_printchar(t_data *ap);

@@ -6,29 +6,29 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 18:10:39 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/23 18:05:43 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/27 18:22:51 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void static ft_get_nb_u(t_data *ap)
+void				ft_get_nb_u(t_data *ap)
 {
 	if (*ap->format == 'U')
-		ap->nbll = (unsigned long)va_arg(ap->arg, long long);
+		ap->unbll = (unsigned long)va_arg(ap->arg, long long);
 	else if (ap->check[LONG] == 1)
-		ap->nbll = va_arg(ap->arg, unsigned long);
+		ap->unbll = va_arg(ap->arg, unsigned long);
 	else if (ap->check[LONG] == 2)
-		ap->nbll = va_arg(ap->arg, unsigned long long);
+		ap->unbll = va_arg(ap->arg, unsigned long long);
 	else if (ap->check[INTMAX] == 1)
-		ap->nbll = va_arg(ap->arg, intmax_t);
+		ap->unbll = va_arg(ap->arg, intmax_t);
 	else if (ap->check[SIZE_T])
-		ap->nbll = va_arg(ap->arg, size_t);
+		ap->unbll = va_arg(ap->arg, size_t);
 	else
-		ap->nbll = va_arg(ap->arg, unsigned int);
+		ap->unbll = va_arg(ap->arg, unsigned int);
 }
 
-void static ft_case_zero(t_data *ap)
+void static	ft_case_zero(t_data *ap)
 {
 	if (!ap->check[MINUS])
 		ap->width = '0';
@@ -66,11 +66,11 @@ void static	ft_printint_preci(t_data *ap)
 		ft_printint_width(ap);
 }
 
-void		ft_print_u_int(t_data *ap)
+void				ft_print_u_int(t_data *ap)
 {
 	ft_get_nb_u(ap);
-	ap->str = ft_itoa_intmax(ap->nbll);
-	if (ap->nbll == 0)
+	ap->str = ft_itoa_uintmax(ap->unbll);
+	if (ap->unbll == 0)
 		ft_preci_zero(ap);
 	ap->len = ft_strlen(ap->str);
 	ap->count += (ap->len);

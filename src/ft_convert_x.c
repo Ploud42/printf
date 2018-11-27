@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/26 19:40:54 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/27 18:39:19 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void static	ft_upper_hexa(t_data *ap)
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
-		if (ap->nbll % 16 <= 9)
-			ap->str[--ap->len] = ap->nbll % 16 + 48;
+		if (ap->unbll % 16 <= 9)
+			ap->str[--ap->len] = ap->unbll % 16 + 48;
 		else
-			ap->str[--ap->len] = ap->nbll % 16 + 55;
-		ap->nbll /= 16;
+			ap->str[--ap->len] = ap->unbll % 16 + 55;
+		ap->unbll /= 16;
 	}
 }
 
@@ -40,25 +40,25 @@ void static	ft_hexa(t_data *ap)
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
-		if (ap->nbll % 16 <= 9)
-			ap->str[--ap->len] = ap->nbll % 16 + 48;
+		if (ap->unbll % 16 <= 9)
+			ap->str[--ap->len] = ap->unbll % 16 + 48;
 		else
-			ap->str[--ap->len] = ap->nbll % 16 + 87;
-		ap->nbll /= 16;
+			ap->str[--ap->len] = ap->unbll % 16 + 87;
+		ap->unbll /= 16;
 	}
 }
 
 void		ft_convert_x(t_data *ap)
 {
 	if (*ap->format == 'p' && ++ap->check[HASH])
-		ap->nbll = va_arg(ap->arg, unsigned long);
+		ap->unbll = va_arg(ap->arg, unsigned long);
 	else
-		ft_get_nb(ap);
+		ft_get_nb_u(ap);
 	if (ap->nbll < 0)
 		ap->nbll = 4294967296 + ap->nbll;
 		//(unsigned)ap->nbll;
 	//printf("%jd\n", ap->nbll);
-	ap->len = ft_nbrlen_base(ap->nbll, 16);
+	ap->len = ft_nbrlen_base(ap->unbll, 16);
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
 	if (*ap->format == 'x' || *ap->format == 'p')
