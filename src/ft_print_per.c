@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:56:46 by jsobel            #+#    #+#             */
-/*   Updated: 2018/10/31 18:01:38 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/29 17:41:52 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void static	ft_printper_width(t_data *ap)
 {
+	if (ap->check[ZERO])
+		ap->width = '0';
 	while (ap->check[WIDTH] > 1)
 	{
-		write(1," ",1);
+		write(1,&ap->width,1);
 		ap->check[WIDTH]--;
 		ap->count++;
 	}

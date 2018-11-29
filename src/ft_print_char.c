@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:21:56 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/12 18:58:37 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/29 17:43:54 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void static	ft_printchar_width(t_data *ap)
 {
+	if (ap->check[ZERO])
+		ap->width = '0';
 	while ((ap->check[WIDTH] > 1 || (ap->check[PRECISION] > 0 &&
 	ap->check[WIDTH] > ap->check[PRECISION])))
 	{
-		write(1," ",1);
+		write(1,&ap->width,1);
 		ap->check[WIDTH]--;
 		ap->count++;
 	}

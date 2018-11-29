@@ -6,11 +6,12 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/26 17:33:59 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/29 20:24:07 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include<stdio.h>
 
 static void	ft_printer(t_data *ap)
 {
