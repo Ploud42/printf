@@ -6,11 +6,12 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/26 19:39:48 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/11/30 18:52:12 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include<stdio.h>
 
 void static ft_case_zero(t_data *ap)
 {
@@ -23,7 +24,7 @@ void static ft_case_zero(t_data *ap)
 	}
 	else if (ap->check[PLUS] && ap->count++)
 		write(1,"+",1);
-	else if (ap->check[HASH] && ap->str[0] != '0')
+	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0'))
 	{
 		write(1,"0",1);
 		if (*ap->format == 'x' || *ap->format == 'p')
@@ -35,17 +36,18 @@ void static ft_case_zero(t_data *ap)
 
 void static	ft_printint_width(t_data *ap)
 {
+	ap->i = ap->check[WIDTH];
 	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
 	{
 		ft_case_zero(ap);
 	}
 	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
 		write(1,"+",1);
-	while (ap->check[WIDTH] > (ap->len + ap->check[PLUS]) &&
-	ap->check[WIDTH] > (ap->check[PRECISION] + ap->minus + ap->check[PLUS]))
+	while (ap->i > (ap->len + ap->check[PLUS]) &&
+	ap->i > (ap->check[PRECISION] + ap->minus + ap->check[PLUS]))
 	{
 		write(1,&ap->width,1);
-		ap->check[WIDTH]--;
+		ap->i--;
 		ap->count++;
 	}
 }
@@ -57,7 +59,8 @@ void static	ft_printint_flag(t_data *ap)
 		write(1," ",1);
 	else if (ap->check[PLUS] && !(ap->minus) && !ap->check[ZERO] && ap->count++)
 		write(1,"+",1);
-	else if (ap->check[HASH] && ap->str[0] != '0' && !ap->check[ZERO])
+	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0') &&
+	!ap->check[ZERO])
 	{
 		write(1,"0",1);
 		if (*ap->format == 'x' || *ap->format == 'p')
@@ -104,10 +107,6 @@ void		ft_printint(t_data *ap)
 	if (ap->str[0] == '-' && ++ap->minus)
 		ap->check[PLUS] = 0;
 	ap->count += (ap->len);
-	if (ap->check[HASH] && ap->str[0] != '0' && ++ap->count &&
-	ap->check[WIDTH]-- && (*ap->format == 'x' || *ap->format == 'X' ||
-	*ap->format == 'p') &&	ap->count++)
-			ap->check[WIDTH]--;
 	if (!ap->check[MINUS])
 		ft_printint_width(ap);
 	ft_printint_flag(ap);

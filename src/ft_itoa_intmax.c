@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:28:14 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/27 18:20:09 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/11/30 17:46:50 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,10 @@ char	*ft_itoa_uintmax(uintmax_t n)
 		size++;
 	}
 	i = n;
-	size = n < 0 ? size + 1 : size;
 	if (!(tab = malloc(size + 1)))
 		return (NULL);
 	tab[size] = 0;
-	tab[0] = n < 0 ? '-' : '0';
-	i = n < 0 ? -i : i;
+	tab[0] = '0';
 	while (i >= 1)
 	{
 		tab[size - 1] = (i % 10) + 48;

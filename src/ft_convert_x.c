@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/27 18:39:19 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/11/30 18:50:53 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ void		ft_convert_x(t_data *ap)
 		ap->unbll = va_arg(ap->arg, unsigned long);
 	else
 		ft_get_nb_u(ap);
-	if (ap->nbll < 0)
-		ap->nbll = 4294967296 + ap->nbll;
-		//(unsigned)ap->nbll;
-	//printf("%jd\n", ap->nbll);
 	ap->len = ft_nbrlen_base(ap->unbll, 16);
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
@@ -65,6 +61,9 @@ void		ft_convert_x(t_data *ap)
 		ft_hexa(ap);
 	else
 		ft_upper_hexa(ap);
+	if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0')
+	&& ++ap->count && ap->check[WIDTH]-- && ap->count++)
+		ap->check[WIDTH]--;
 	ft_preci_zero(ap);
 	ft_printint(ap);
 }

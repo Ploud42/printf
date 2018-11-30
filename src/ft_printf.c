@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/29 20:24:07 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/11/30 18:28:00 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,27 +104,3 @@ int			ft_printf(const char *format, ...)
 	va_end(ap.arg);
 	return (ap.count);
 }
-
-/*
-int	ft_printf(const char *format, ...)
-{
-	char *str;
-	va_list arg;
-
-	va_start(arg, format);
-	str = va_arg(arg, char *);
-	ft_putstr(str);
-	va_end(arg);
-	return (0);
-}
-
-int	main()
-{
-	int ret;
-
-	ret = ft_printf("Hey j'ai envie de te dire %-7s, et cela %05d fois, %s %i fois\n", "salut", 15, "ou alors", 0);
-	printf("ret = %d\n", ret);
-	ft_printf("%-7.5d\n", 123);
-	printf("%-7.5d\n", 123);
-	return (0);
-}*/
