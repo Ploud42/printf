@@ -6,12 +6,12 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:21:56 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/29 17:43:54 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/12/03 18:03:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include<stdio.h>
 void static	ft_printchar_width(t_data *ap)
 {
 	if (ap->check[ZERO])
@@ -31,7 +31,7 @@ void static	ft_printchar_preci(t_data *ap)
 	(ap->check[PRECISION] >= 0 && ap->i < ap->check[PRECISION]
 	&& ap->i < 1))
 	{
-		write(1, &ap->c, 1);
+		write(1, &ap->nbll, 1);
 		ap->count++;
 		ap->i++;
 	}
@@ -39,15 +39,14 @@ void static	ft_printchar_preci(t_data *ap)
 
 void		ft_printchar(t_data *ap)
 {
-	ap->c = va_arg(ap->arg, int);
-	if (!ap->check[MINUS])
-	ft_printchar_width(ap);
-	if (!ap->c)
+	ft_get_nb(ap);
+	if (ap->nbll > 127)
 	{
-		ft_putstr("^@");
-		ap->count += 1;
+		ap->count = -1;
 		return ;
 	}
+	if (!ap->check[MINUS])
+	ft_printchar_width(ap);
 	ft_printchar_preci(ap);
 	if (ap->check[MINUS])
 		ft_printchar_width(ap);

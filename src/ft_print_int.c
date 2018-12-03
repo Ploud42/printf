@@ -6,14 +6,14 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/30 18:52:12 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/03 19:06:54 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include<stdio.h>
 
-void static ft_case_zero(t_data *ap)
+void		ft_case_zero(t_data *ap)
 {
 	if (!ap->check[MINUS])
 		ap->width = '0';
@@ -34,7 +34,7 @@ void static ft_case_zero(t_data *ap)
 	}
 }
 
-void static	ft_printint_width(t_data *ap)
+void		ft_printint_width(t_data *ap)
 {
 	ap->i = ap->check[WIDTH];
 	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
@@ -52,7 +52,7 @@ void static	ft_printint_width(t_data *ap)
 	}
 }
 
-void static	ft_printint_flag(t_data *ap)
+void		ft_printint_flag(t_data *ap)
 {
 	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->minus) &&
 	ap->count++)
@@ -70,7 +70,7 @@ void static	ft_printint_flag(t_data *ap)
 	}
 }
 
-void static	ft_printint_preci(t_data *ap)
+void		ft_printint_preci(t_data *ap)
 {
 	if (ap->str[0] == '-')
 	{
@@ -95,11 +95,12 @@ void		ft_printint(t_data *ap)
 		ft_get_nb(ap);
 		if (ap->nbll == (-9223372036854775807 - 1))
 		{
-			ap->str = ft_itoa_intmax(ap->nbll + 1);
+			if (!(ap->str = ft_itoa_intmax(ap->nbll + 1)))
+				exit(EXIT_FAILURE);
 			ap->str[19]++;
 		}
-		else
-			ap->str = ft_itoa_intmax(ap->nbll);
+		else if (!(ap->str = ft_itoa_intmax(ap->nbll)))
+			exit(EXIT_FAILURE);
 		if (ap->nbll == 0)
 			ft_preci_zero(ap);
 	}

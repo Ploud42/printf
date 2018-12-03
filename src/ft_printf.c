@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/30 18:28:00 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/03 19:41:27 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,21 @@ static void	ft_printer(t_data *ap)
 		ap->tab[ap->index](ap);
 		ap->format++;
 	}
+	else if (ap->check[WIDTH] != -1)
+	{
+		if (!(ap->str = ft_memalloc(2)))
+			exit(EXIT_FAILURE);
+		ap->str[0] = ap->format[0];
+		ft_printstr(ap);
+		ap->format++;
+	}
 	else
 		return ;
 }
 
 static void	ft_reader_format(t_data *ap)
 {
-	while (*(*ap).format)
+	while (*(*ap).format && ap->count != -1)
 	{
 		if (*(*ap).format == '%')
 		{
@@ -49,8 +57,10 @@ static void	ft_reader_format(t_data *ap)
 static void	ft_set_specifiers(t_data *ap)
 {
 	ap->tab[0] = &ft_printstr;
+	ap->tab[1] = &ft_printstr;
 	ap->tab[2] = &ft_convert_x;
 	ap->tab[3] = &ft_printint;
+	ap->tab[4] = &ft_printlint;
 	ap->tab[5] = &ft_printint;
 	ap->tab[6] = &ft_convert_o;
 	ap->tab[7] = &ft_convert_o;
@@ -59,6 +69,7 @@ static void	ft_set_specifiers(t_data *ap)
 	ap->tab[10] = &ft_convert_x;
 	ap->tab[11] = &ft_convert_x;
 	ap->tab[12] = &ft_printchar;
+	ap->tab[13] = &ft_printchar;
 	ap->tab[14] = &ft_printper;
 }
 

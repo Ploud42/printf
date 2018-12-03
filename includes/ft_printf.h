@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/27 18:24:26 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/12/03 18:34:06 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int					ft_printf(const char *format, ...);
 char				*ft_itoa_uintmax(uintmax_t n);
 char				*ft_itoa_intmax(intmax_t n);
 
+void				ft_printlint(t_data *ap);
+
 void				ft_get_nb_u(t_data *ap);
 void				ft_print_u_int(t_data *ap);
 
@@ -78,6 +80,10 @@ void				ft_printstr_width(t_data *ap);
 void				ft_printstr_preci(t_data *ap);
 void				ft_printstr(t_data *ap);
 
+void				ft_case_zero(t_data *ap);
+void				ft_printint_width(t_data *ap);
+void				ft_printint_flag(t_data *ap);
+void				ft_printint_preci(t_data *ap);
 void				ft_printint(t_data *ap);
 
 void				ft_printper(t_data *ap);

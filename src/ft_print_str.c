@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:06:12 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/29 17:43:20 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/12/03 19:18:15 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_printstr_preci(t_data *ap)
 
 void	ft_printstr(t_data *ap)
 {
-	ap->str = va_arg(ap->arg, char *);
+	if (!ap->str)
+		ap->str = va_arg(ap->arg, char *);
 	if (!ap->str)
 	{
 		ft_putstr("(null)");
