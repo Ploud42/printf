@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/03 17:41:26 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/05 19:06:37 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,17 @@ int			ft_nbrlen_base(uintmax_t nbr, int base)
 
 void static	ft_locta(t_data *ap)
 {
-	ap->nbll = va_arg(ap->arg, long);
-	ap->len = ft_nbrlen_base(ap->nbll, 8);
+	ap->unbll = va_arg(ap->arg, long);
+	ap->len = ft_nbrlen_base(ap->unbll, 8);
+	if (ap->check[PRECISION] > ap->len)
+		ap->check[HASH] = 0;
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
 	ap->str[ap->len] = 0;
 	while (ap->len)
 	{
-		ap->str[--ap->len] = ap->nbll % 8 + 48;
-		ap->nbll /= 8;
+		ap->str[--ap->len] = ap->unbll % 8 + 48;
+		ap->unbll /= 8;
 	}
 }
 
@@ -65,6 +67,8 @@ void static	ft_octa(t_data *ap)
 {
 	ft_get_nb_u(ap);
 	ap->len = ft_nbrlen_base(ap->unbll, 8);
+	if (ap->check[PRECISION] > ap->len)
+		ap->check[HASH] = 0;
 	if (!(ap->str = ft_memalloc(ap->len + 1)))
 		exit(EXIT_FAILURE);
 	ap->str[ap->len] = 0;
@@ -77,6 +81,8 @@ void static	ft_octa(t_data *ap)
 
 void	ft_convert_o(t_data *ap)
 {
+	ap->check[PLUS] = 0;
+	ap->check[SPACE] = 0;
 	if (*ap->format == 'o')
 		ft_octa(ap);
 	else

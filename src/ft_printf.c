@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/03 19:41:27 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/05 18:25:31 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	ft_printer(t_data *ap)
 		if (!(ap->str = ft_memalloc(2)))
 			exit(EXIT_FAILURE);
 		ap->str[0] = ap->format[0];
+		ap->check[PRECISION] = -1;
 		ft_printstr(ap);
 		ap->format++;
 	}

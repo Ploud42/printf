@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/03 19:06:54 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/05 18:53:09 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void		ft_case_zero(t_data *ap)
 	}
 	else if (ap->check[PLUS] && ap->count++)
 		write(1,"+",1);
+	else if (ap->check[SPACE] && ap->count++)
+		write(1," ",1);
 	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0'))
 	{
 		write(1,"0",1);
@@ -43,8 +45,10 @@ void		ft_printint_width(t_data *ap)
 	}
 	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
 		write(1,"+",1);
-	while (ap->i > (ap->len + ap->check[PLUS]) &&
-	ap->i > (ap->check[PRECISION] + ap->minus + ap->check[PLUS]))
+	else if (ap->check[ZERO] && ap->check[SPACE] && ap->count++)
+		write(1," ",1);
+	while (ap->i > (ap->len + ap->check[PLUS] + ap->check[SPACE]) && ap->i >
+	(ap->check[PRECISION] + ap->minus + ap->check[PLUS] + ap->check[SPACE]))
 	{
 		write(1,&ap->width,1);
 		ap->i--;
@@ -54,8 +58,7 @@ void		ft_printint_width(t_data *ap)
 
 void		ft_printint_flag(t_data *ap)
 {
-	if (ap->check[SPACE] && ap->check[WIDTH] <= ap->len && !(ap->minus) &&
-	ap->count++)
+	if (ap->check[SPACE] && !ap->check[ZERO] && !(ap->minus) && ap->count++)
 		write(1," ",1);
 	else if (ap->check[PLUS] && !(ap->minus) && !ap->check[ZERO] && ap->count++)
 		write(1,"+",1);

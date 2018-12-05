@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/30 18:50:53 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/05 18:45:23 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void		ft_preci_zero(t_data *ap)
 	if (ap->check[PRECISION] == 0)
 	{
 		ap->str[0] = 0;
-		ap->check[HASH] = 0;
+		if (!(*ap->format == 'p'))
+			ap->check[HASH] = 0;
 	}
 }
 
@@ -50,6 +51,8 @@ void static	ft_hexa(t_data *ap)
 
 void		ft_convert_x(t_data *ap)
 {
+	ap->check[PLUS] = 0;
+	ap->check[SPACE] = 0;
 	if (*ap->format == 'p' && ++ap->check[HASH])
 		ap->unbll = va_arg(ap->arg, unsigned long);
 	else

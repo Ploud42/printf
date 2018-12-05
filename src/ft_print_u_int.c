@@ -6,13 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 18:10:39 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/03 19:24:18 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/05 15:58:53 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void				ft_get_nb_u(t_data *ap)
+void		ft_get_nb_u(t_data *ap)
 {
 	if (*ap->format == 'U')
 		ap->unbll = (unsigned long)va_arg(ap->arg, long long);
@@ -70,7 +70,7 @@ void static	ft_printint_u_preci(t_data *ap)
 		ft_printint_u_width(ap);
 }
 
-void				ft_print_u_int(t_data *ap)
+void		ft_print_u_int(t_data *ap)
 {
 	ft_get_nb_u(ap);
 	if (!(ap->str = ft_itoa_uintmax(ap->unbll)))
