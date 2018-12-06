@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 18:10:39 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/05 15:58:53 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 16:25:35 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,36 @@ void		ft_get_nb_u(t_data *ap)
 		ap->unbll = va_arg(ap->arg, unsigned int);
 }
 
-void static	ft_case_u_zero(t_data *ap)
+static void	ft_case_u_zero(t_data *ap)
 {
 	if (!ap->check[MINUS])
 		ap->width = '0';
 	else if (ap->check[PLUS] && ap->count++)
-		write(1,"+",1);
+		write(1, "+", 1);
 }
 
-void static	ft_printint_u_width(t_data *ap)
+static void	ft_printint_u_width(t_data *ap)
 {
 	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
 	{
 		ft_case_u_zero(ap);
 	}
 	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
-		write(1,"+",1);
+		write(1, "+", 1);
 	while (ap->check[WIDTH] > (ap->len + ap->check[PLUS]) &&
 	ap->check[WIDTH] > (ap->check[PRECISION] + ap->check[PLUS]))
 	{
-		write(1,&ap->width,1);
+		write(1, &ap->width, 1);
 		ap->check[WIDTH]--;
 		ap->count++;
 	}
 }
 
-void static	ft_printint_u_preci(t_data *ap)
+static void	ft_printint_u_preci(t_data *ap)
 {
 	while (ap->precision > (ap->len - ap->minus))
 	{
-		write(1,"0",1);
+		write(1, "0", 1);
 		ap->precision--;
 		ap->count++;
 	}

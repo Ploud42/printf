@@ -6,12 +6,11 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/05 18:25:31 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 16:54:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include<stdio.h>
 
 static void	ft_printer(t_data *ap)
 {
@@ -72,6 +71,7 @@ static void	ft_set_specifiers(t_data *ap)
 	ap->tab[12] = &ft_printchar;
 	ap->tab[13] = &ft_printchar;
 	ap->tab[14] = &ft_printper;
+	ap->tab[15] = &ft_print_double;
 }
 
 static void	ft_set_index(t_data *ap)
@@ -100,6 +100,7 @@ static void	ft_set_index(t_data *ap)
 	ap->spec[12] = 'c';
 	ap->spec[13] = 'C';
 	ap->spec[14] = '%';
+	ft_set_new_index(ap);
 }
 
 int			ft_printf(const char *format, ...)

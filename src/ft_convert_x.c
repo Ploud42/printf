@@ -6,24 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:41:25 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/05 18:45:23 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 16:52:55 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include<stdio.h>
 
-void		ft_preci_zero(t_data *ap)
-{
-	if (ap->check[PRECISION] == 0)
-	{
-		ap->str[0] = 0;
-		if (!(*ap->format == 'p'))
-			ap->check[HASH] = 0;
-	}
-}
-
-void static	ft_upper_hexa(t_data *ap)
+static void	ft_upper_hexa(t_data *ap)
 {
 	ap->str[ap->len] = 0;
 	while (ap->len)
@@ -36,7 +25,7 @@ void static	ft_upper_hexa(t_data *ap)
 	}
 }
 
-void static	ft_hexa(t_data *ap)
+static void	ft_hexa(t_data *ap)
 {
 	ap->str[ap->len] = 0;
 	while (ap->len)

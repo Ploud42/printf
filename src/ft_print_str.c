@@ -6,12 +6,11 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:06:12 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/05 18:31:54 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 16:06:33 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include<stdio.h>
 
 void	ft_printstr_width(t_data *ap)
 {
@@ -20,7 +19,7 @@ void	ft_printstr_width(t_data *ap)
 	while ((ap->check[WIDTH] > ap->len || (ap->check[PRECISION] >= 0 &&
 	ap->check[WIDTH] > ap->check[PRECISION])))
 	{
-		write(1,&ap->width,1);
+		write(1, &ap->width, 1);
 		ap->check[WIDTH]--;
 		ap->count++;
 	}

@@ -6,12 +6,11 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/03 19:36:46 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 17:41:20 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include<stdio.h>
 
 static void		ft_check_precision(t_data *ap)
 {
@@ -50,7 +49,8 @@ static void		ft_check_flag(t_data *ap)
 				ap->format++;
 				ap->i++;
 			}
-			if (*ap->format >= '1' && *ap->format <= '9' && ap->check[WIDTH] == -1)
+			if (*ap->format >= '1' && *ap->format <= '9' &&
+			ap->check[WIDTH] == -1)
 				ft_check_width(ap);
 			if (*ap->format == '.')
 				ft_check_precision(ap);
@@ -73,6 +73,7 @@ static void		ft_init(t_data *ap)
 	ap->check[SHORT] = 0;
 	ap->check[INTMAX] = 0;
 	ap->check[SIZE_T] = 0;
+	ap->check[LDOUBLE] = 0;
 	ap->check[WIDTH] = -1;
 	ap->check[PRECISION] = -1;
 	ap->width = ' ';

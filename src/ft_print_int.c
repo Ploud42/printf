@@ -6,12 +6,11 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/05 18:53:09 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 16:06:53 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include<stdio.h>
 
 void		ft_case_zero(t_data *ap)
 {
@@ -19,20 +18,20 @@ void		ft_case_zero(t_data *ap)
 		ap->width = '0';
 	if (ap->minus)
 	{
-		write(1,"-",1);
+		write(1, "-", 1);
 		ap->str++;
 	}
 	else if (ap->check[PLUS] && ap->count++)
-		write(1,"+",1);
+		write(1, "+", 1);
 	else if (ap->check[SPACE] && ap->count++)
-		write(1," ",1);
+		write(1, " ", 1);
 	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0'))
 	{
-		write(1,"0",1);
+		write(1, "0", 1);
 		if (*ap->format == 'x' || *ap->format == 'p')
-			write(1,"x",1);
+			write(1, "x", 1);
 		else if (*ap->format == 'X')
-			write(1,"X",1);
+			write(1, "X", 1);
 	}
 }
 
@@ -44,13 +43,13 @@ void		ft_printint_width(t_data *ap)
 		ft_case_zero(ap);
 	}
 	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
-		write(1,"+",1);
+		write(1, "+", 1);
 	else if (ap->check[ZERO] && ap->check[SPACE] && ap->count++)
-		write(1," ",1);
+		write(1, " ", 1);
 	while (ap->i > (ap->len + ap->check[PLUS] + ap->check[SPACE]) && ap->i >
 	(ap->check[PRECISION] + ap->minus + ap->check[PLUS] + ap->check[SPACE]))
 	{
-		write(1,&ap->width,1);
+		write(1, &ap->width, 1);
 		ap->i--;
 		ap->count++;
 	}
@@ -59,17 +58,17 @@ void		ft_printint_width(t_data *ap)
 void		ft_printint_flag(t_data *ap)
 {
 	if (ap->check[SPACE] && !ap->check[ZERO] && !(ap->minus) && ap->count++)
-		write(1," ",1);
+		write(1, " ", 1);
 	else if (ap->check[PLUS] && !(ap->minus) && !ap->check[ZERO] && ap->count++)
-		write(1,"+",1);
+		write(1, "+", 1);
 	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0') &&
 	!ap->check[ZERO])
 	{
-		write(1,"0",1);
+		write(1, "0", 1);
 		if (*ap->format == 'x' || *ap->format == 'p')
-			write(1,"x",1);
+			write(1, "x", 1);
 		else if (*ap->format == 'X')
-			write(1,"X",1);
+			write(1, "X", 1);
 	}
 }
 
@@ -77,12 +76,12 @@ void		ft_printint_preci(t_data *ap)
 {
 	if (ap->str[0] == '-')
 	{
-		write(1,"-",1);
+		write(1, "-", 1);
 		ap->str++;
 	}
 	while (ap->precision > (ap->len - ap->minus))
 	{
-		write(1,"0",1);
+		write(1, "0", 1);
 		ap->precision--;
 		ap->count++;
 	}

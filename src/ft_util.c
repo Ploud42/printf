@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_l_int.c                                   :+:      :+:    :+:   */
+/*   ft_util.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/03 18:30:02 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:25:00 by jsobel           ###   ########.fr       */
+/*   Created: 2018/12/06 16:47:51 by jsobel            #+#    #+#             */
+/*   Updated: 2018/12/06 16:53:03 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_get_lnb(t_data *ap)
+void		ft_get_nb(t_data *ap)
 {
 	if (ap->check[LONG] == 1)
 		ap->nbll = va_arg(ap->arg, long);
@@ -21,34 +21,45 @@ static void	ft_get_lnb(t_data *ap)
 	else if (ap->check[INTMAX] == 1)
 		ap->nbll = va_arg(ap->arg, intmax_t);
 	else if (ap->check[SHORT] == 1 && !ap->check[SIZE_T])
-		ap->nbll = (unsigned short)va_arg(ap->arg, long);
+		ap->nbll = (short)va_arg(ap->arg, int);
 	else if (ap->check[SHORT] == 2 && !ap->check[SIZE_T])
-		ap->nbll = (unsigned short)va_arg(ap->arg, long);
+		ap->nbll = (char)va_arg(ap->arg, int);
 	else if (ap->check[SIZE_T])
 		ap->nbll = va_arg(ap->arg, size_t);
 	else
-		ap->nbll = va_arg(ap->arg, long);
+		ap->nbll = va_arg(ap->arg, int);
 }
 
-void		ft_printlint(t_data *ap)
+int			ft_nbrlen_base(uintmax_t nbr, int base)
 {
-	ft_get_lnb(ap);
-	if (ap->nbll == (-9223372036854775807 - 1))
+	uintmax_t	i;
+	int			size;
+
+	i = nbr;
+	size = 0;
+	if (nbr == 0)
+		size = 1;
+	while (i != 0)
 	{
-		if (!(ap->str = ft_itoa_intmax(ap->nbll + 1)))
-			exit(EXIT_FAILURE);
-		ap->str[19]++;
+		size++;
+		i /= base;
 	}
-	else if (!(ap->str = ft_itoa_intmax(ap->nbll)))
-		exit(EXIT_FAILURE);
-	if (ap->nbll == 0)
-		ft_preci_zero(ap);
-	ap->len = ft_strlen(ap->str);
-	if (ap->str[0] == '-' && ++ap->minus)
-		ap->check[PLUS] = 0;
-	ap->count += (ap->len);
-	if (!ap->check[MINUS])
-		ft_printint_width(ap);
-	ft_printint_flag(ap);
-	ft_printint_preci(ap);
+	return (size);
+}
+
+void		ft_preci_zero(t_data *ap)
+{
+	if (ap->check[PRECISION] == 0)
+	{
+		ap->str[0] = 0;
+		if (!(*ap->format == 'p'))
+			ap->check[HASH] = 0;
+	}
+}
+
+void		ft_set_new_index(t_data *ap)
+{
+		ap->flag[LDOUBLE] = 'L';
+		ap->spec[15] = 'f';
+		ap->spec[16] = 'F';
 }

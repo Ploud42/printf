@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:28:14 by jsobel            #+#    #+#             */
-/*   Updated: 2018/11/30 17:46:50 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/06 16:10:11 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_itoa_intmax(intmax_t n)
 
 char	*ft_itoa_uintmax(uintmax_t n)
 {
-	char			*tab;
+	char		*tab;
 	uintmax_t	i;
 	uintmax_t	size;
 
