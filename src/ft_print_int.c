@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:06:53 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/12 18:18:21 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		ft_case_zero(t_data *ap)
 void		ft_printint_width(t_data *ap)
 {
 	ap->i = ap->check[WIDTH];
-	if (ap->check[ZERO] && ap->check[PRECISION] < 0)
+	if (ap->check[ZERO] && (ap->check[PRECISION] < 0 || *ap->format == 'f'))
 	{
 		ft_case_zero(ap);
 	}

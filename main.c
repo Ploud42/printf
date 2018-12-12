@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 19:51:59 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/11 18:55:23 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/12 18:18:59 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main()
 	int		a, b;
 	p = "Salut";
 
-	a = ft_printf("%f\n", 233.0070);
+	a = ft_printf("%-0.7f\n", 5.0500004);
 	printf("\n");
-	b = printf("%f\n", 0.05);
+	b = printf("%-0.7f\n", 5.0500004);
 	printf("ft_printf = %d et printf = %d\n", a, b);
 	return (0);
 }
