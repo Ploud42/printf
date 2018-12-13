@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 18:26:33 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:54:44 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/13 15:37:04 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	ft_set_specifiers(t_data *ap)
 	ap->tab[13] = &ft_printchar;
 	ap->tab[14] = &ft_printper;
 	ap->tab[15] = &ft_print_double;
+	ap->tab[16] = &ft_print_double;
 }
 
 static void	ft_set_index(t_data *ap)

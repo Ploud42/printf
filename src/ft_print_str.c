@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:06:12 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:06:33 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/13 18:44:57 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,8 @@ void	ft_printstr(t_data *ap)
 {
 	if (!ap->str)
 		ap->str = va_arg(ap->arg, char *);
-	if (!ap->str && ap->check[PRECISION] == -1)
-	{
-		ft_putstr("(null)");
-		ap->count += 6;
-		return ;
-	}
+	if (!ap->str)
+		ap->str = "(null)";
 	else if (!ap->str && !(ap->str = ft_memalloc(1)))
 		exit(EXIT_FAILURE);
 	ap->len = ft_strlen(ap->str);

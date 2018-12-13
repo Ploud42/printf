@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/12 18:18:21 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/13 18:39:58 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void		ft_printint_width(t_data *ap)
 	{
 		ft_case_zero(ap);
 	}
-	else if (ap->check[ZERO] && ap->check[PLUS] && ap->count++)
+	else if (ap->check[ZERO] && ap->check[PRECISION] < 0 && ap->check[PLUS] &&
+	ap->count++)
 		write(1, "+", 1);
 	else if (ap->check[ZERO] && ap->check[SPACE] && ap->count++)
 		write(1, " ", 1);
@@ -59,10 +60,11 @@ void		ft_printint_flag(t_data *ap)
 {
 	if (ap->check[SPACE] && !ap->check[ZERO] && !(ap->minus) && ap->count++)
 		write(1, " ", 1);
-	else if (ap->check[PLUS] && !(ap->minus) && !ap->check[ZERO] && ap->count++)
+	else if (ap->check[PLUS] && !(ap->minus) && !(ap->check[ZERO] &&
+	ap->check[PRECISION] < 0) && ap->count++)
 		write(1, "+", 1);
 	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0') &&
-	!ap->check[ZERO])
+	(!ap->check[ZERO] || ap->check[PRECISION] >= 0))
 	{
 		write(1, "0", 1);
 		if (*ap->format == 'x' || *ap->format == 'p')

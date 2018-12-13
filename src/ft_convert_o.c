@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 19:06:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:48:54 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/13 17:13:58 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,15 @@ void		ft_convert_o(t_data *ap)
 {
 	ap->check[PLUS] = 0;
 	ap->check[SPACE] = 0;
+	if (!ap->check[PRECISION] && ap->check[HASH])
+		ap->check[ZERO] = 0;
 	if (*ap->format == 'o')
 		ft_octa(ap);
 	else
 		ft_locta(ap);
 	if (ap->check[HASH] && ap->str[0] != '0' && ++ap->count)
 		ap->check[WIDTH]--;
-	else if (!ap->check[HASH])
+	else if (!ap->check[HASH] && ap->str[0] == '0')
 		ft_preci_zero(ap);
 	ft_printint(ap);
 }

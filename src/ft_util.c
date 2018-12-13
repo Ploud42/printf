@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 16:47:51 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:53:03 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/13 18:42:10 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		ft_preci_zero(t_data *ap)
 
 void		ft_set_new_index(t_data *ap)
 {
-		ap->flag[LDOUBLE] = 'L';
-		ap->spec[15] = 'f';
-		ap->spec[16] = 'F';
+	ap->flag[LDOUBLE] = 'L';
+	ap->spec[15] = 'f';
+	ap->spec[16] = 'F';
 }
