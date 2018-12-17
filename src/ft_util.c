@@ -6,11 +6,22 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 16:47:51 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/13 18:42:10 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:01:40 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		ft_free_str(t_data *ap)
+{
+	if (ap->str)
+	{
+		if (ap->minus)
+			ap->str--;
+		free(ap->str);
+		ap->str = 0;
+	}
+}
 
 void		ft_get_nb(t_data *ap)
 {

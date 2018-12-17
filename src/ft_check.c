@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 17:41:20 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/17 16:07:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static void		ft_check_precision(t_data *ap)
 {
-	if (*ap->format == '.')
-	{
+	while (*ap->format == '.')
 		ap->format++;
+	if (*ap->format)
+	{
 		ap->check[PRECISION] = ft_atoi(ap->format);
 		while (*ap->format >= '0' && *ap->format <= '9')
 			ap->format++;
@@ -62,6 +63,7 @@ static void		ft_check_flag(t_data *ap)
 static void		ft_init(t_data *ap)
 {
 	ap->i = 0;
+	ap->d = 0;
 	ap->len = 0;
 	ap->str = 0;
 	ap->check[HASH] = 0;

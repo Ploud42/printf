@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 18:10:39 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:25:35 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/17 16:37:53 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,5 @@ void		ft_print_u_int(t_data *ap)
 	if (!ap->check[MINUS])
 		ft_printint_u_width(ap);
 	ft_printint_u_preci(ap);
+	ft_free_str(ap);
 }

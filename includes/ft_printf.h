@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/12 17:43:01 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/17 16:31:47 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_data
 	intmax_t		nbll;
 	char			c;
 	int				i;
+	int				d;
 	int				count;
 	int				index;
 	int				minus;
@@ -72,6 +73,7 @@ void				ft_print_u_int(t_data *ap);
 
 void				ft_printchar(t_data *ap);
 
+void				ft_free_str(t_data *ap);
 void				ft_preci_zero(t_data *ap);
 void				ft_get_nb(t_data *ap);
 int					ft_nbrlen_base(uintmax_t nbr, int base);

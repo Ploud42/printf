@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/13 18:39:58 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/17 16:36:00 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		ft_case_zero(t_data *ap)
 		write(1, "+", 1);
 	else if (ap->check[SPACE] && ap->count++)
 		write(1, " ", 1);
-	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0'))
+	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0') &&
+	!ap->d)
 	{
 		write(1, "0", 1);
 		if (*ap->format == 'x' || *ap->format == 'p')
@@ -64,7 +65,7 @@ void		ft_printint_flag(t_data *ap)
 	ap->check[PRECISION] < 0) && ap->count++)
 		write(1, "+", 1);
 	else if (ap->check[HASH] && (*ap->format == 'p' || ap->str[0] != '0') &&
-	(!ap->check[ZERO] || ap->check[PRECISION] >= 0))
+	(!ap->check[ZERO] || ap->check[PRECISION] >= 0) && !ap->d)
 	{
 		write(1, "0", 1);
 		if (*ap->format == 'x' || *ap->format == 'p')
@@ -97,6 +98,7 @@ void		ft_printint(t_data *ap)
 	if (*ap->format == 'd' || *ap->format == 'D' || *ap->format == 'i')
 	{
 		ft_get_nb(ap);
+		ap->d = 1;
 		if (ap->nbll == (-9223372036854775807 - 1))
 		{
 			if (!(ap->str = ft_itoa_intmax(ap->nbll + 1)))
@@ -116,4 +118,5 @@ void		ft_printint(t_data *ap)
 		ft_printint_width(ap);
 	ft_printint_flag(ap);
 	ft_printint_preci(ap);
+	ft_free_str(ap);
 }

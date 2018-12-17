@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 18:30:02 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/06 16:25:00 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/17 16:37:18 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void		ft_printlint(t_data *ap)
 		ft_printint_width(ap);
 	ft_printint_flag(ap);
 	ft_printint_preci(ap);
+	ft_free_str(ap);
 }
