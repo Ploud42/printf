@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 16:55:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/17 18:49:49 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/18 18:54:16 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,28 @@ static int	ft_check_inf_nan(t_data *ap)
 	if (ap->f == 1.0 / 0.0 || ap->f == -1.0 / 0.0)
 	{
 		if (*ap->format == 'f')
-			ft_putstr("inf");
+			ap->str = "inf";
 		else
-			ft_putstr("INF");
-		ap->count += 3;
-		return (1);
+			ap->str = "INF";
 	}
 	else if (ap->f != ap->f)
 	{
 		if (*ap->format == 'f')
-			ft_putstr("nan");
+			ap->str = "nan";
 		else
-			ft_putstr("NAN");
-		ap->count += 3;
-		return (1);
+			ap->str = "NAN";
 	}
-	return (0);
+	else
+	{
+		if (ap->check[PRECISION] == -1)
+		{
+			ap->check[PRECISION] = 6;
+			ap->precision = 6;
+		}
+		return (0);
+	}
+	ap->check[PRECISION] = 0;
+	return (1);
 }
 
 static void	ft_ftoa(t_data *ap)
@@ -43,7 +49,7 @@ static void	ft_ftoa(t_data *ap)
 		ap->f *= -1.0;
 	ap->nbll = ap->f;
 	ap->f -= ap->nbll;
-	if (ap->check[PRECISION] && ap->count++)
+	if ((ap->check[PRECISION] || ap->check[HASH]) && !ap->inf && ap->count++)
 		write(1, ".", 1);
 	while (ap->precision-- && ap->count++)
 	{
@@ -63,27 +69,13 @@ static void	ft_ftoa(t_data *ap)
 		ft_putstr(ap->str);
 }
 
-static void	ft_case_zero_double(t_data *ap)
-{
-	if (!ap->check[MINUS])
-		ap->width = '0';
-	if (ap->minus)
-	{
-		write(1, "-", 1);
-		ap->str++;
-	}
-	else if (ap->check[PLUS] && ap->count++)
-		write(1, "+", 1);
-	else if (ap->check[SPACE] && ap->count++)
-		write(1, " ", 1);
-}
-
 static void	ft_printdouble_flag(t_data *ap)
 {
-	if (ap->check[SPACE] && !ap->check[ZERO] && !(ap->minus) && ap->count++)
+	if (ap->check[SPACE] && (!ap->check[ZERO] || ap->inf) && !ap->minus &&
+	ap->count++)
 		write(1, " ", 1);
-	else if (ap->check[PLUS] && !(ap->minus) && !(ap->check[ZERO] &&
-	ap->check[PRECISION] < 0) && ap->count++)
+	else if (ap->check[PLUS] && !(ap->minus) && (!ap->check[ZERO] || ap->inf)
+	&& ap->count++)
 		write(1, "+", 1);
 	if (!ap->check[ZERO] && ap->minus)
 		ap->minus = 0;
@@ -92,8 +84,20 @@ static void	ft_printdouble_flag(t_data *ap)
 static void	ft_printdouble_width(t_data *ap)
 {
 	ap->i = ap->check[WIDTH];
-	if (ap->check[ZERO])
-		ft_case_zero_double(ap);
+	if (ap->check[ZERO] && !ap->inf)
+	{
+		if (!ap->check[MINUS])
+			ap->width = '0';
+		if (ap->minus)
+		{
+			write(1, "-", 1);
+			ap->str++;
+		}
+		else if (ap->check[PLUS] && ap->count++)
+			write(1, "+", 1);
+		else if (ap->check[SPACE] && ap->count++)
+			write(1, " ", 1);
+	}
 	while (ap->i > (ap->len + ap->check[PLUS] + ap->check[SPACE]))
 	{
 		write(1, &ap->width, 1);
@@ -108,26 +112,23 @@ void		ft_print_double(t_data *ap)
 		ap->f = va_arg(ap->arg, long double);
 	else
 		ap->f = va_arg(ap->arg, double);
-	if (ft_check_inf_nan(ap))
-		return ;
-	if (ap->check[PRECISION] == -1)
-	{
-		ap->check[PRECISION] = 6;
-		ap->precision = 6;
-	}
-	if (ap->check[HASH])
-		ap->check[HASH] = 0;
-	ap->str = ft_itoa_intmax(ap->f);
+	if (!(ft_check_inf_nan(ap) && ++ap->inf))
+		ap->str = ft_itoa_intmax(ap->f);
 	if (ap->str[0] == '-' && ++ap->minus)
 		ap->check[PLUS] = 0;
-	ap->len = ft_strlen(ap->str) + ap->precision + (ap->check[PRECISION] != 0);
+	ap->len = ft_strlen(ap->str) + ap->check[PRECISION]
+	+ ((ap->check[PRECISION] || ap->check[HASH]) && !ap->inf);
 	ap->count += ft_strlen(ap->str);
 	if (!ap->check[MINUS])
 		ft_printdouble_width(ap);
 	ft_printdouble_flag(ap);
-	ft_ftoa(ap);
+	if (ap->inf)
+		ft_putstr(ap->str);
+	else
+		ft_ftoa(ap);
 	if (ap->check[MINUS])
 		ft_printdouble_width(ap);
 	ap->minus = 0;
-	ft_free_str(ap);
+	if (!ap->inf)
+		ft_free_str(ap);
 }

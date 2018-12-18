@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 18:32:15 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/17 16:07:44 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/18 18:19:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void		ft_init(t_data *ap)
 {
 	ap->i = 0;
 	ap->d = 0;
+	ap->inf = 0;
 	ap->len = 0;
 	ap->str = 0;
 	ap->check[HASH] = 0;

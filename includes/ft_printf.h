@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/17 16:31:47 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/18 18:18:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_data
 	char			c;
 	int				i;
 	int				d;
+	int				inf;
 	int				count;
 	int				index;
 	int				minus;
