@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 16:55:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/18 18:54:16 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/19 17:20:13 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	ft_check_inf_nan(t_data *ap)
 	}
 	else if (ap->f != ap->f)
 	{
+		ap->check[PLUS] = 0;
+		ap->check[SPACE] = 0;
 		if (*ap->format == 'f')
 			ap->str = "nan";
 		else
@@ -31,10 +33,7 @@ static int	ft_check_inf_nan(t_data *ap)
 	else
 	{
 		if (ap->check[PRECISION] == -1)
-		{
-			ap->check[PRECISION] = 6;
 			ap->precision = 6;
-		}
 		return (0);
 	}
 	ap->check[PRECISION] = 0;
@@ -72,11 +71,13 @@ static void	ft_ftoa(t_data *ap)
 static void	ft_printdouble_flag(t_data *ap)
 {
 	if (ap->check[SPACE] && (!ap->check[ZERO] || ap->inf) && !ap->minus &&
-	ap->count++)
+	!(ap->f != ap->f) && ap->count++)
 		write(1, " ", 1);
 	else if (ap->check[PLUS] && !(ap->minus) && (!ap->check[ZERO] || ap->inf)
-	&& ap->count++)
+	&& !(ap->f != ap->f) && ap->count++)
 		write(1, "+", 1);
+	else if	((ap->inf || ap->str[0] == '0') && ap->minus && ap->count++)
+		write(1, "-", 1);
 	if (!ap->check[ZERO] && ap->minus)
 		ap->minus = 0;
 }
@@ -91,7 +92,8 @@ static void	ft_printdouble_width(t_data *ap)
 		if (ap->minus)
 		{
 			write(1, "-", 1);
-			ap->str++;
+			if (ap->str[0] == '-')
+				ap->str++;
 		}
 		else if (ap->check[PLUS] && ap->count++)
 			write(1, "+", 1);
@@ -112,10 +114,12 @@ void		ft_print_double(t_data *ap)
 		ap->f = va_arg(ap->arg, long double);
 	else
 		ap->f = va_arg(ap->arg, double);
+	if (ap->f < 0 && ++ap->minus)
+		ap->check[PLUS] = 0;
 	if (!(ft_check_inf_nan(ap) && ++ap->inf))
 		ap->str = ft_itoa_intmax(ap->f);
-	if (ap->str[0] == '-' && ++ap->minus)
-		ap->check[PLUS] = 0;
+	if (ap->check[PRECISION] == -1)
+		ap->check[PRECISION] = 6;
 	ap->len = ft_strlen(ap->str) + ap->check[PRECISION]
 	+ ((ap->check[PRECISION] || ap->check[HASH]) && !ap->inf);
 	ap->count += ft_strlen(ap->str);
