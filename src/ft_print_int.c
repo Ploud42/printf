@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:25:27 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/17 16:36:00 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/20 16:25:03 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void		ft_case_zero(t_data *ap)
 	if (!ap->check[MINUS])
 		ap->width = '0';
 	if (ap->minus)
-	{
 		write(1, "-", 1);
-		ap->str++;
-	}
 	else if (ap->check[PLUS] && ap->count++)
 		write(1, "+", 1);
 	else if (ap->check[SPACE] && ap->count++)
@@ -77,18 +74,16 @@ void		ft_printint_flag(t_data *ap)
 
 void		ft_printint_preci(t_data *ap)
 {
-	if (ap->str[0] == '-')
-	{
+	if (ap->str[0] == '-' && !(ap->check[ZERO] && (ap->check[PRECISION] < 0 ||
+	*ap->format == 'f')))
 		write(1, "-", 1);
-		ap->str++;
-	}
 	while (ap->precision > (ap->len - ap->minus))
 	{
 		write(1, "0", 1);
 		ap->precision--;
 		ap->count++;
 	}
-	ft_putstr(ap->str);
+	ft_putstr(ap->str + ap->minus);
 	if (ap->check[MINUS])
 		ft_printint_width(ap);
 }

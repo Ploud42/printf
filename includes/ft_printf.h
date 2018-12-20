@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:08:21 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/18 18:18:44 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/12/20 19:17:47 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define WIDTH		10
 # define PRECISION	11
 # define BUFF_SIZE	2048
+# define INFMIN		(1.0 / ap->f) == (1.0 / -0.0)
 
 typedef struct		s_data
 {
