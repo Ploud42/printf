@@ -6,11 +6,24 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:28:14 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/17 16:58:35 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/12 17:01:39 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*ft_itoa_double(double n)
+{
+	char		*str;
+	intmax_t	i;
+
+	i = n;
+	n = n - i;
+	if (n >= 0.5)
+		i++;
+	str = ft_itoa_intmax(i);
+	return (str);
+}
 
 char	*ft_itoa_intmax(intmax_t n)
 {

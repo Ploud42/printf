@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 16:55:40 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/20 19:19:37 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/12 17:02:10 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void		ft_print_double(t_data *ap)
 	if ((ap->f < 0 || INFMIN) && ++ap->minus)
 		ap->check[PLUS] = 0;
 	if (!(ft_check_inf_nan(ap) && ++ap->inf))
-		ap->str = ft_itoa_intmax(ap->f);
+		ap->str = ft_itoa_double(ap->f);
 	if (ap->check[PRECISION] == -1)
 		ap->check[PRECISION] = 6;
 	ap->len = ft_strlen(ap->str) + ap->check[PRECISION]

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 19:51:59 by jsobel            #+#    #+#             */
-/*   Updated: 2018/12/20 19:25:00 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/12 18:00:32 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main()
 	int		a, b;
 	p = "Salut";
 
-	a = ft_printf("{%-010f}\n", -1.0);
+	a = ft_printf("{%s}\n", "salut");
 	printf("\n");
-	b = printf("{%-010f}\n", -1.0);
+	b = printf("{%s}\n", "salut");
 	printf("ft_printf = %d et printf = %d\n", a, b);
 	return (0);
 }
